@@ -45,7 +45,7 @@ export const NOTICIAS_DATA: Post[] = [
   },
 ];
 
-export const POLITICA_DATA = [
+export const POLITICA_DATA: Post[] = [
   {
     id: "pol-1",
     title: "Concejo Municipal debate nuevo plan de ordenamiento territorial",
@@ -78,5 +78,64 @@ export const POLITICA_DATA = [
     image:
       "https://images.unsplash.com/photo-1621905251189-08b45d6a269e?q=80&w=1200&auto=format&fit=crop",
     slug: "veeduria-ciudadana-vias-garzon",
+  },
+];
+
+export const ELECCIONES_DATA: Post[] = [
+  {
+    id: "el-1",
+    title:
+      "Pulso Presidencial: Las coaliciones definen sus precandidatos para la consulta de marzo",
+    excerpt:
+      "A menos de un año de las elecciones, los movimientos de centro, derecha e izquierda ajustan sus maquinarias para consolidar listas únicas al Congreso.",
+    category: "Elecciones 2026",
+    // Imagen de banderas y multitud (mitin político)
+    image:
+      "https://images.unsplash.com/photo-1529107386315-e1a2ed48a620?auto=format&fit=crop&q=80&w=1200",
+    slug: "coaliciones-presidenciales-2026",
+  },
+  {
+    id: "el-2",
+    title:
+      "Registraduría anuncia nuevas medidas de biometría para evitar fraude",
+    excerpt:
+      "El organismo electoral implementará tecnología de punta en los puestos de votación para garantizar la transparencia en los escrutinios.",
+    category: "Elecciones 2026",
+    image:
+      "https://images.unsplash.com/photo-1521791136064-7986c2920216?auto=format&fit=crop&q=80&w=1200",
+    slug: "medidas-seguridad-votos",
+  },
+  {
+    id: "el-3",
+    title: "Voto joven: El 40% del censo electoral será menor de 30 años",
+    excerpt:
+      "Las tendencias indican que la población juvenil será el factor determinante en la elección del sucesor en la Casa de Nariño.",
+    category: "Elecciones 2026",
+    // Imagen de jóvenes manifestándose o participando
+    image:
+      "https://images.unsplash.com/photo-1517048676732-d65bc937f952?auto=format&fit=crop&q=80&w=1200",
+    slug: "voto-joven-colombia",
+  },
+  {
+    id: "el-4",
+    title: "Debate sobre la financiación de campañas se toma el Senado",
+    excerpt:
+      "Nuevos topes y restricciones a donaciones privadas son discutidos para blindar el proceso electoral de intereses particulares.",
+    category: "Elecciones 2026",
+    // Imagen de arquitectura de capitolio/senado
+    image:
+      "https://images.unsplash.com/photo-1521791136064-7986c2920216?auto=format&fit=crop&q=80&w=1200",
+    slug: "financiacion-campanas-presidenciales",
+  },
+  {
+    id: "el-3",
+    title: "Voto joven: El 40% del censo electoral será menor de 30 años",
+    excerpt:
+      "Las tendencias indican que la población juvenil será el factor determinante en la elección del sucesor en la Casa de Nariño.",
+    category: "Elecciones 2026",
+    // Imagen de jóvenes manifestándose o participando
+    image:
+      "https://images.unsplash.com/photo-1517048676732-d65bc937f952?auto=format&fit=crop&q=80&w=1200",
+    slug: "voto-joven-colombia",
   },
 ];
