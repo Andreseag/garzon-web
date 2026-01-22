@@ -7,12 +7,12 @@ interface TrendTopic {
   slug: string;
 }
 
-// Props del componente (por si quieres pasarle los datos desde una página)
+// Props del componente
 interface TrendsBarProps {
   topics?: TrendTopic[];
 }
 
-// Data de ejemplo (esto vendría de una API o base de datos)
+// Data de ejemplo
 const DEFAULT_TRENDS: TrendTopic[] = [
   { id: "1", label: "Dólar hoy", slug: "dolar-hoy" },
   { id: "2", label: "Elecciones 2026", slug: "elecciones-2026" },
@@ -28,11 +28,12 @@ export default function TrendsBar({ topics = DEFAULT_TRENDS }: TrendsBarProps) {
       className="trends border-y h-12 w-full border-y-gray-300 bg-white"
       aria-label="Tendencias">
       <div className="trends__container max-w-7xl mx-auto flex items-center h-full px-4 overflow-x-auto no-scrollbar">
-        {/* Título de la sección con TS, estilizado con Tailwind */}
-        <span className="flex items-center text-[10px] font-bold uppercase tracking-tighter text-blue-600 mr-4 whitespace-nowrap">
+        {/* Título de la sección con el nuevo azul de marca #2f86cc */}
+        <span className="flex items-center text-[10px] font-bold uppercase tracking-tighter text-[#2f86cc] mr-4 whitespace-nowrap">
           <span className="relative flex h-2 w-2 mr-2">
-            <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-blue-400 opacity-75"></span>
-            <span className="relative inline-flex rounded-full h-2 w-2 bg-blue-600"></span>
+            {/* El ping usa una opacidad del azul de marca */}
+            <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-[#2f86cc] opacity-75"></span>
+            <span className="relative inline-flex rounded-full h-2 w-2 bg-[#2f86cc]"></span>
           </span>
           Tendencias
         </span>
@@ -42,7 +43,7 @@ export default function TrendsBar({ topics = DEFAULT_TRENDS }: TrendsBarProps) {
             <li key={topic.id} className="whitespace-nowrap">
               <Link
                 href={`/tema/${topic.slug}`}
-                className="text-xs font-semibold text-gray-700 hover:text-blue-600 transition-colors duration-200">
+                className="text-xs font-semibold text-gray-700 hover:text-[#2f86cc] transition-colors duration-200">
                 #{topic.label}
               </Link>
             </li>
