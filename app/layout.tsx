@@ -1,5 +1,6 @@
 import { metadata as siteMetadata } from "./metadata";
 import { Arimo, Libre_Baskerville } from "next/font/google";
+import { Providers } from "./providers";
 import "./globals.css";
 
 // Arimo para cuerpo, categorías, botones y meta-datos
@@ -24,12 +25,13 @@ export default function RootLayout({
 }>) {
   return (
     <html
+      suppressHydrationWarning
       lang="es"
       className={`${arimo.variable} ${libreBaskerville.variable}`}>
       <body
         className="font-sans antialiased text-slate-900 bg-white"
         suppressHydrationWarning>
-        {children}
+        <Providers>{children}</Providers>
       </body>
     </html>
   );
