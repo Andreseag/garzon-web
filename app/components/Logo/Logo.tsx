@@ -21,7 +21,16 @@ export default function Logo({
           width={width}
           height={height}
           priority
-          className="object-contain"
+          className="object-contain dark:hidden"
+        />
+
+        <Image
+          src="/logo-garzon-white.png"
+          alt="Garzón Logo"
+          width={width}
+          height={height}
+          priority
+          className="hidden object-contain dark:block"
         />
       </Link>
     </div>

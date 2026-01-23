@@ -1,4 +1,4 @@
-import type { Metadata } from "next";
+import { metadata as siteMetadata } from "./metadata";
 import { Arimo, Libre_Baskerville } from "next/font/google";
 import "./globals.css";
 
@@ -15,10 +15,7 @@ const libreBaskerville = Libre_Baskerville({
   weight: ["400", "700"],
 });
 
-export const metadata: Metadata = {
-  title: "Noticias Huila | Elecciones 2026",
-  description: "Portal informativo con Arimo y Libre Baskerville",
-};
+export const metadata = siteMetadata;
 
 export default function RootLayout({
   children,
