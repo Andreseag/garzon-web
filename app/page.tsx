@@ -7,6 +7,7 @@ import {
   ELECCIONES_DATA,
   VIDEO_POSTS,
   LATEST_NEWS_DATA,
+  GALERY_EXAMPLE,
 } from "./data/noticias";
 import { COLUMNISTAS_DATA } from "./data/columnistas";
 import FeaturedNewsGrid from "./components/FeaturedNewsGrid/FeaturedNewsGrid";
@@ -16,6 +17,7 @@ import ElectionGrid from "./components/ElectionGrid/ElectionGrid";
 import VideoGrid from "./components/VideoGrid/VideoGrid";
 import LatestNewsGrid from "./components/LatestNewsGrid/LatestNewsGrid";
 import Footer from "./components/Footer/Footer";
+import NewsCarousel from "./components/NewsCarousel/NewsCarousel";
 
 export default function Home() {
   return (
@@ -36,6 +38,8 @@ export default function Home() {
         <VideoGrid videos={VIDEO_POSTS} />
 
         <LatestNewsGrid posts={LATEST_NEWS_DATA} />
+
+        <NewsCarousel images={GALERY_EXAMPLE} />
 
         <Footer />
       </main>

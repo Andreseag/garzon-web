@@ -301,3 +301,34 @@ export const LATEST_NEWS_DATA: Post[] = [
     time: "08:10 a.m.",
   },
 ];
+
+export const GALERY_EXAMPLE = [
+  {
+    url: "https://images.unsplash.com/photo-1529107386315-e1a2ed48a620?q=80&w=2000&auto=format&fit=crop",
+    caption:
+      "Debate en el concejo municipal sobre las nuevas políticas de desarrollo urbano para el próximo cuatrienio.",
+    photographer: "Andrés Felipe Huila", // Nombre del autor
+    credit: "Agencia Prensa Libre",
+  },
+  {
+    url: "https://images.unsplash.com/photo-1488521787991-ed7bbaae773c?q=80&w=2000&auto=format&fit=crop",
+    caption:
+      "Programas de asistencia social logran impactar a más de 500 familias en zonas rurales este mes.",
+    photographer: "Andrés Felipe Huila", // Nombre del autor
+    credit: "S. Rodríguez / Periodismo Visual",
+  },
+  {
+    url: "https://images.unsplash.com/photo-1517048676732-d65bc937f952?q=80&w=2000&auto=format&fit=crop",
+    caption:
+      "Inauguración del nuevo centro tecnológico que beneficiará a estudiantes de educación superior.",
+    photographer: "Andrés Felipe Huila", // Nombre del autor
+    credit: "Unsplash News / Tech",
+  },
+  {
+    url: "https://images.unsplash.com/photo-1506744038136-46273834b3fb?q=80&w=2000&auto=format&fit=crop",
+    caption:
+      "Reservas naturales de la región se consolidan como el principal atractivo turístico para el 2026.",
+    photographer: "Andrés Felipe Huila", // Nombre del autor
+    credit: "Turismo Huila",
+  },
+];

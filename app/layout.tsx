@@ -26,7 +26,9 @@ export default function RootLayout({
       lang="es"
       suppressHydrationWarning
       className={`${arimo.variable} ${libreBaskerville.variable}`}>
-      <body className="font-sans antialiased transition-colors duration-300">
+      <body
+        suppressHydrationWarning
+        className="font-sans antialiased transition-colors duration-300">
         <Providers>{children}</Providers>
       </body>
     </html>
