@@ -4,13 +4,13 @@ import Link from "next/link";
 
 export default function OpinionGrid({ columnists }: { columnists: any[] }) {
   return (
-    <section className="max-w-screen-xl mx-auto px-4 my-16">
+    <section className="max-w-7xl mx-auto px-4 my-16">
       <div className="flex items-center gap-4 mb-10">
         <h2 className="text-2xl font-black uppercase tracking-tighter text-slate-900">
           Opinión
         </h2>
         {/* Usamos el azul de marca en la línea decorativa */}
-        <div className="h-[2px] flex-1 bg-[#2f86cc]/20"></div>
+        <div className="h-0.5 flex-1 bg-[#2f86cc]/20"></div>
       </div>
 
       <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-6 gap-8">

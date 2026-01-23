@@ -1,12 +1,20 @@
 import Image from "next/image";
 import TrendsBar from "./components/TrendsBar/TrendsBar";
 import Logo from "./components/Logo/Logo";
-import { NOTICIAS_DATA, POLITICA_DATA, ELECCIONES_DATA } from "./data/noticias";
+import {
+  NOTICIAS_DATA,
+  POLITICA_DATA,
+  ELECCIONES_DATA,
+  VIDEO_POSTS,
+  LATEST_NEWS_DATA,
+} from "./data/noticias";
 import { COLUMNISTAS_DATA } from "./data/columnistas";
 import FeaturedNewsGrid from "./components/FeaturedNewsGrid/FeaturedNewsGrid";
 import TopicGrid from "./components/TopicGrid/TopicGrid";
 import OpinionGrid from "./components/OpinionGrid/OpinionGrid";
 import ElectionGrid from "./components/ElectionGrid/ElectionGrid";
+import VideoGrid from "./components/VideoGrid/VideoGrid";
+import LatestNewsGrid from "./components/LatestNewsGrid/LatestNewsGrid";
 
 export default function Home() {
   return (
@@ -23,6 +31,10 @@ export default function Home() {
         <OpinionGrid columnists={COLUMNISTAS_DATA} />
 
         <ElectionGrid posts={ELECCIONES_DATA} />
+
+        <VideoGrid videos={VIDEO_POSTS} />
+
+        <LatestNewsGrid posts={LATEST_NEWS_DATA} />
       </main>
     </div>
   );

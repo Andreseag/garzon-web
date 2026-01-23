@@ -42,7 +42,7 @@ export default function ElectionGrid({ posts }: { posts: any[] }) {
         {/* Noticia de Análisis Principal */}
         <div className="lg:col-span-7">
           <Link href={`/notas/${featured.slug}`} className="group">
-            <div className="relative aspect-[16/9] rounded-2xl overflow-hidden mb-6 bg-slate-100">
+            <div className="relative aspect-video rounded-2xl overflow-hidden mb-6 bg-slate-100">
               <Image
                 src={featured.image}
                 alt={featured.title}
