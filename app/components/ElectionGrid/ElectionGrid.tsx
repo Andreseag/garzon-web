@@ -17,7 +17,7 @@ export default function ElectionGrid({ posts }: { posts: any[] }) {
       </div>
 
       {/* Cabecera del Especial */}
-      <div className="bg-white dark:bg-slate-950 py-10 flex flex-col md:flex-row justify-between items-end border-b-2 border-slate-100 dark:border-slate-800 mb-10 transition-colors">
+      <div className="bg-white dark:bg-slate-950 py-10 px-2 flex flex-col md:flex-row justify-between items-end border-b-2 border-slate-100 dark:border-slate-800 mb-10 transition-colors">
         <div>
           <h2 className="text-4xl md:text-5xl font-sans font-black tracking-tighter uppercase italic text-slate-900 dark:text-white leading-none">
             Elecciones <span className="text-[#2f86cc]">2026</span>
