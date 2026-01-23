@@ -15,6 +15,7 @@ import OpinionGrid from "./components/OpinionGrid/OpinionGrid";
 import ElectionGrid from "./components/ElectionGrid/ElectionGrid";
 import VideoGrid from "./components/VideoGrid/VideoGrid";
 import LatestNewsGrid from "./components/LatestNewsGrid/LatestNewsGrid";
+import Footer from "./components/Footer/Footer";
 
 export default function Home() {
   return (
@@ -35,6 +36,8 @@ export default function Home() {
         <VideoGrid videos={VIDEO_POSTS} />
 
         <LatestNewsGrid posts={LATEST_NEWS_DATA} />
+
+        <Footer />
       </main>
     </div>
   );
