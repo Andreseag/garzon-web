@@ -3,13 +3,11 @@ import { Arimo, Libre_Baskerville } from "next/font/google";
 import { Providers } from "./providers";
 import "./globals.css";
 
-// Arimo para cuerpo, categorías, botones y meta-datos
 const arimo = Arimo({
   subsets: ["latin"],
   variable: "--font-arimo",
 });
 
-// Libre Baskerville para darle autoridad a los titulares
 const libreBaskerville = Libre_Baskerville({
   subsets: ["latin"],
   variable: "--font-libre-baskerville",
@@ -25,12 +23,10 @@ export default function RootLayout({
 }>) {
   return (
     <html
-      suppressHydrationWarning
       lang="es"
+      suppressHydrationWarning
       className={`${arimo.variable} ${libreBaskerville.variable}`}>
-      <body
-        className="font-sans antialiased text-slate-900 bg-white"
-        suppressHydrationWarning>
+      <body className="font-sans antialiased transition-colors duration-300">
         <Providers>{children}</Providers>
       </body>
     </html>
