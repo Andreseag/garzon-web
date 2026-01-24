@@ -17,6 +17,7 @@ import VideoGrid from "./components/VideoGrid/VideoGrid";
 import LatestNewsGrid from "./components/LatestNewsGrid/LatestNewsGrid";
 import Footer from "./components/Footer/Footer";
 import NewsCarousel from "./components/NewsCarousel/NewsCarousel";
+import SpotifyPodcast from "./components/SpotifyPodcast/SpotifyPodcast";
 
 export default function Home() {
   return (
@@ -37,6 +38,12 @@ export default function Home() {
         <VideoGrid videos={VIDEO_POSTS} />
 
         <LatestNewsGrid posts={LATEST_NEWS_DATA} />
+
+        <SpotifyPodcast
+          spotifyUrl="https://open.spotify.com/embed/episode/3fPOH4Lv6x3wmrCwYSUom6"
+          title="Garzón Podcast"
+          description="Entrevistas exclusivas con los protagonistas de la noticia en el centro del Villanueva, Casanare."
+        />
 
         <NewsCarousel images={GALERY_EXAMPLE} />
 

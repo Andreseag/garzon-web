@@ -11,7 +11,7 @@ interface LogoProps {
 }
 
 export default function Logo({
-  width = 280,
+  width = 220,
   height = 80, // Ajustado a una proporción más realista para logos
   className = "my-8",
 }: LogoProps) {
