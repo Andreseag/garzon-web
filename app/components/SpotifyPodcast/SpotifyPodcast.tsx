@@ -23,7 +23,7 @@ export default function SpotifyPodcast({
 
   return (
     <section className="max-w-7xl mx-auto px-4 my-16">
-      <div className="bg-slate-50 dark:bg-slate-900/50 rounded-[2rem] p-6 md:p-10 border border-slate-200 dark:border-slate-800 transition-colors">
+      <div className="bg-slate-50 dark:bg-slate-900/50 rounded-4xl p-6 md:p-10 border border-slate-200 dark:border-slate-800 transition-colors">
         <div className="flex flex-col lg:flex-row gap-10 items-center">
           {/* Lado Izquierdo: Información del Podcast */}
           <div className="flex-1 space-y-4">
@@ -52,7 +52,7 @@ export default function SpotifyPodcast({
           </div>
 
           {/* Lado Derecho: Reproductor de Spotify */}
-          <div className="w-full lg:w-[400px] shadow-2xl rounded-xl overflow-hidden bg-transparent">
+          <div className="w-full lg:w-100 shadow-2xl rounded-xl overflow-hidden bg-transparent">
             <iframe
               data-testid="embed-iframe"
               style={{ borderRadius: "12px" }}
