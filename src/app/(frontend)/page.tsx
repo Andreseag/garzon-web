@@ -14,6 +14,8 @@ import ScienceTechServer from './components/ScienceTechServer/ScienceTechServer'
 import LensServer from './components/LensServer/LensServer'
 import OpinionGridServer from './components/OpinionGridServer/OpinionGridServer'
 
+export const dynamic = 'force-dynamic'
+
 export default function Home() {
   return (
     <>
