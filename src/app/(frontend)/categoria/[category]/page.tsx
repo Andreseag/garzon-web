@@ -80,7 +80,7 @@ export default async function CategoryPage({ params }: PageProps) {
           })
 
           return (
-            <Link key={item.id} href={`/nota/${item.slug}`} className="group flex flex-col">
+            <Link key={item.id} href={`/notas/${item.slug}`} className="group flex flex-col">
               {/* Imagen con Hover de Garzón Web */}
               <div className="relative aspect-[16/10] mb-6 overflow-hidden rounded-2xl bg-slate-100 dark:bg-slate-900">
                 <Image
