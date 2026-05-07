@@ -8,7 +8,7 @@ interface OpinionGridProps {
 
 export default function OpinionGrid({ columnists }: OpinionGridProps) {
   return (
-    <section className="max-w-7xl mx-auto px-4 my-16">
+    <section className="max-w-7xl mx-auto px-4 my-8">
       {/* CABECERA DE SECCIÓN */}
       <div className="flex items-center gap-4 mb-12">
         <h2 className="text-2xl font-sans font-black uppercase tracking-tighter text-slate-900 dark:text-slate-100">
@@ -27,7 +27,8 @@ export default function OpinionGrid({ columnists }: OpinionGridProps) {
           if (!avatar) return null
 
           return (
-            <div
+            <a
+              href={`/columnista/${author.id}`}
               key={author.id}
               // href={`/columnistas/${author.slug}`}
               className="group flex flex-col items-center text-center focus:outline-none"
@@ -57,7 +58,7 @@ export default function OpinionGrid({ columnists }: OpinionGridProps) {
               <p className="text-[10px] font-sans font-bold uppercase tracking-[0.15em] text-slate-500 dark:text-slate-400 mt-2">
                 {author.specialty}
               </p>
-            </div>
+            </a>
           )
         })}
       </div>

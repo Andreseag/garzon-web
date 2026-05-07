@@ -1,83 +1,83 @@
-"use client";
+'use client'
 
-import React, { useState, useRef } from "react";
-import useEmblaCarousel from "embla-carousel-react";
-import { Play, X, Eye } from "lucide-react";
+import React, { useState, useRef } from 'react'
+import useEmblaCarousel from 'embla-carousel-react'
+import { Play, X, Eye } from 'lucide-react'
 
 interface ShortVideo {
-  id: string;
-  url: string;
-  title: string;
-  views: string;
-  category: string;
+  id: string
+  url: string
+  title: string
+  views: string
+  category: string
 }
 
 const SHORTS_DATA: ShortVideo[] = [
   {
-    id: "1",
-    url: "https://res.cloudinary.com/demo/video/upload/q_auto/sea_turtle.mp4",
-    title: "Reporte: Así avanza la jornada de vacunación en el Huila",
-    views: "2.4k",
-    category: "SALUD",
+    id: '1',
+    url: 'https://res.cloudinary.com/demo/video/upload/q_auto/sea_turtle.mp4',
+    title: 'Reporte: Así avanza la jornada de vacunación en el Huila',
+    views: '2.4k',
+    category: 'SALUD',
   },
   {
-    id: "2",
-    url: "https://res.cloudinary.com/demo/video/upload/so_2,eo_10/elephants.mp4",
-    title: "Naturaleza: Avistamiento de especies en la represa",
-    views: "1.1k",
-    category: "AMBIENTE",
+    id: '2',
+    url: 'https://res.cloudinary.com/demo/video/upload/so_2,eo_10/elephants.mp4',
+    title: 'Naturaleza: Avistamiento de especies en la represa',
+    views: '1.1k',
+    category: 'AMBIENTE',
   },
   {
-    id: "3",
-    url: "https://res.cloudinary.com/demo/video/upload/q_auto/sea_turtle.mp4",
-    title: "Turismo: Los destinos más visitados esta semana",
-    views: "4.2k",
-    category: "TURISMO",
+    id: '3',
+    url: 'https://res.cloudinary.com/demo/video/upload/q_auto/sea_turtle.mp4',
+    title: 'Turismo: Los destinos más visitados esta semana',
+    views: '4.2k',
+    category: 'TURISMO',
   },
   {
-    id: "4",
-    url: "https://res.cloudinary.com/demo/video/upload/so_5/dog.mp4",
-    title: "Mascotas: Jornada de adopción en el parque central",
-    views: "900",
-    category: "SOCIAL",
+    id: '4',
+    url: 'https://res.cloudinary.com/demo/video/upload/so_5/dog.mp4',
+    title: 'Mascotas: Jornada de adopción en el parque central',
+    views: '900',
+    category: 'SOCIAL',
   },
   {
-    id: "5",
-    url: "https://res.cloudinary.com/demo/video/upload/q_auto/sea_turtle.mp4",
-    title: "Reporte: Así avanza la jornada de vacunación en el Huila",
-    views: "2.4k",
-    category: "SALUD",
+    id: '5',
+    url: 'https://res.cloudinary.com/demo/video/upload/q_auto/sea_turtle.mp4',
+    title: 'Reporte: Así avanza la jornada de vacunación en el Huila',
+    views: '2.4k',
+    category: 'SALUD',
   },
   {
-    id: "6",
-    url: "https://res.cloudinary.com/demo/video/upload/so_2,eo_10/elephants.mp4",
-    title: "Naturaleza: Avistamiento de especies en la represa",
-    views: "1.1k",
-    category: "AMBIENTE",
+    id: '6',
+    url: 'https://res.cloudinary.com/demo/video/upload/so_2,eo_10/elephants.mp4',
+    title: 'Naturaleza: Avistamiento de especies en la represa',
+    views: '1.1k',
+    category: 'AMBIENTE',
   },
   {
-    id: "7",
-    url: "https://res.cloudinary.com/demo/video/upload/q_auto/sea_turtle.mp4",
-    title: "Turismo: Los destinos más visitados esta semana",
-    views: "4.2k",
-    category: "TURISMO",
+    id: '7',
+    url: 'https://res.cloudinary.com/demo/video/upload/q_auto/sea_turtle.mp4',
+    title: 'Turismo: Los destinos más visitados esta semana',
+    views: '4.2k',
+    category: 'TURISMO',
   },
   {
-    id: "8",
-    url: "https://res.cloudinary.com/demo/video/upload/so_5/dog.mp4",
-    title: "Mascotas: Jornada de adopción en el parque central",
-    views: "900",
-    category: "SOCIAL",
+    id: '8',
+    url: 'https://res.cloudinary.com/demo/video/upload/so_5/dog.mp4',
+    title: 'Mascotas: Jornada de adopción en el parque central',
+    views: '900',
+    category: 'SOCIAL',
   },
-];
+]
 
 export default function NewsShorts() {
-  const [emblaRef] = useEmblaCarousel({ align: "start", dragFree: true });
-  const [selectedVideo, setSelectedVideo] = useState<ShortVideo | null>(null);
+  const [emblaRef] = useEmblaCarousel({ align: 'start', dragFree: true })
+  const [selectedVideo, setSelectedVideo] = useState<ShortVideo | null>(null)
 
   return (
     // Agregamos overflow-hidden a la sección para que nada se escape del ancho de pantalla
-    <section className="max-w-7xl mx-auto px-4 my-16 overflow-hidden">
+    <section className="max-w-7xl mx-auto px-4 my-8 overflow-hidden">
       <div className="flex items-center gap-3 mb-8">
         <span className="w-2 h-8 bg-[#2f86cc] inline-block shadow-[0_0_10px_rgba(47,134,204,0.5)]"></span>
         <h2 className="text-2xl font-sans font-black uppercase tracking-tighter text-slate-900 dark:text-white">
@@ -93,11 +93,9 @@ export default function NewsShorts() {
               key={short.id}
               // AJUSTE CLAVE: 80% del ancho en mobile, 280px fijo en desktop.
               // pl-5 crea el espacio entre videos sin desbordar.
-              className="flex-[0_0_80%] sm:flex-[0_0_280px] pl-5 min-w-0">
-              <ShortCard
-                short={short}
-                onClick={() => setSelectedVideo(short)}
-              />
+              className="flex-[0_0_80%] sm:flex-[0_0_280px] pl-5 min-w-0"
+            >
+              <ShortCard short={short} onClick={() => setSelectedVideo(short)} />
             </div>
           ))}
         </div>
@@ -107,7 +105,8 @@ export default function NewsShorts() {
         <div className="fixed inset-0 z-[100] bg-white/80 dark:bg-slate-950/95 backdrop-blur-xl flex items-center justify-center p-4">
           <button
             onClick={() => setSelectedVideo(null)}
-            className="absolute top-6 right-6 text-slate-900 dark:text-white p-2 hover:bg-[#2f86cc]/10 rounded-full transition-all z-[110]">
+            className="absolute top-6 right-6 text-slate-900 dark:text-white p-2 hover:bg-[#2f86cc]/10 rounded-full transition-all z-[110]"
+          >
             <X size={40} strokeWidth={1} />
           </button>
 
@@ -130,17 +129,11 @@ export default function NewsShorts() {
         </div>
       )}
     </section>
-  );
+  )
 }
 
-function ShortCard({
-  short,
-  onClick,
-}: {
-  short: ShortVideo;
-  onClick: () => void;
-}) {
-  const videoRef = useRef<HTMLVideoElement>(null);
+function ShortCard({ short, onClick }: { short: ShortVideo; onClick: () => void }) {
+  const videoRef = useRef<HTMLVideoElement>(null)
 
   return (
     <div
@@ -149,11 +142,12 @@ function ShortCard({
       onMouseEnter={() => videoRef.current?.play()}
       onMouseLeave={() => {
         if (videoRef.current) {
-          videoRef.current.pause();
-          videoRef.current.currentTime = 0;
+          videoRef.current.pause()
+          videoRef.current.currentTime = 0
         }
       }}
-      onClick={onClick}>
+      onClick={onClick}
+    >
       <video
         ref={videoRef}
         src={short.url}
@@ -183,5 +177,5 @@ function ShortCard({
         </div>
       </div>
     </div>
-  );
+  )
 }

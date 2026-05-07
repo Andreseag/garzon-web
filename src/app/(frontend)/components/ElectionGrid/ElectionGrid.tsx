@@ -8,7 +8,7 @@ export default function ElectionGrid({ posts }: { posts: any[] }) {
   const sidePosts = posts.slice(1, 5)
 
   return (
-    <section className="max-w-7xl mx-auto px-4 my-16">
+    <section className="max-w-7xl mx-auto px-4 my-8">
       {/* Detalle superior: Bandera de Colombia */}
       <div className="flex h-1.5 w-full overflow-hidden rounded-t-full">
         <div className="flex-[2] bg-[#FCD116]"></div>

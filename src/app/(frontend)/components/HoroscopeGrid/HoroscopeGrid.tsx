@@ -22,7 +22,7 @@ export default function HoroscopeGrid({ posts }: { posts: any[] }) {
   const sidePosts = posts.slice(1, 5)
 
   return (
-    <section className="max-w-7xl mx-auto px-4 my-16">
+    <section className="max-w-7xl mx-auto px-4 my-8">
       {/* Detalle superior: Gradiente Cósmico */}
       <div className="flex h-1.5 w-full overflow-hidden rounded-t-full">
         <div className="flex-1 bg-[#1e293b]"></div>

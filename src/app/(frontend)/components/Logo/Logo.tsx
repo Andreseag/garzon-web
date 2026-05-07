@@ -1,34 +1,36 @@
-"use client";
+'use client'
 
-import Image from "next/image";
-import Link from "next/link";
-import { useEffect, useState } from "react";
+import Image from 'next/image'
+import Link from 'next/link'
+import { useEffect, useState } from 'react'
 
 interface LogoProps {
-  width?: number;
-  height?: number;
-  className?: string;
+  width?: number
+  height?: number
+  className?: string
 }
 
 export default function Logo({
   width = 220,
   height = 80, // Ajustado a una proporción más realista para logos
-  className = "my-8",
+  className = 'my-3',
 }: LogoProps) {
-  const [mounted, setMounted] = useState(false);
+  const [mounted, setMounted] = useState(false)
 
   // Esperamos a que el componente monte para evitar discrepancias de tema en el servidor
   useEffect(() => {
-    setMounted(true);
-  }, []);
+    setMounted(true)
+  }, [])
 
   return (
     <div
-      className={`flex justify-center items-center w-full transition-all duration-300 ${className}`}>
+      className={`flex justify-center items-center w-full transition-all duration-300 ${className}`}
+    >
       <Link
         href="/"
         aria-label="Volver al inicio"
-        className="relative block hover:opacity-90 transition-opacity">
+        className="relative block hover:opacity-90 transition-opacity"
+      >
         {/* Logo para Modo Claro */}
         <Image
           src="/logo-garzon.png"
@@ -38,7 +40,7 @@ export default function Logo({
           priority
           // Si no ha montado, mostramos el de modo claro por defecto
           className={`object-contain transition-opacity duration-500 ${
-            mounted ? "dark:hidden" : "block"
+            mounted ? 'dark:hidden' : 'block'
           }`}
         />
 
@@ -55,5 +57,5 @@ export default function Logo({
         )}
       </Link>
     </div>
-  );
+  )
 }

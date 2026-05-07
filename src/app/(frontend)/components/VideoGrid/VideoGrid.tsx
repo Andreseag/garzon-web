@@ -1,10 +1,10 @@
-import Link from "next/link";
+import Link from 'next/link'
 
 export default function VideoGrid({ videos }: { videos: any[] }) {
-  if (!videos || videos.length < 2) return null;
+  if (!videos || videos.length < 2) return null
 
   return (
-    <section className="max-w-7xl mx-auto px-4 my-16">
+    <section className="max-w-7xl mx-auto px-4 my-8 ">
       {/* Título de sección con Arimo (font-sans) */}
       <div className="flex items-center gap-2 mb-10 border-l-4 border-[#2f86cc] pl-5">
         <h2 className="text-3xl font-sans font-black uppercase tracking-tighter text-slate-900 dark:text-slate-100">
@@ -22,7 +22,8 @@ export default function VideoGrid({ videos }: { videos: any[] }) {
                 title={video.title}
                 className="absolute top-0 left-0 w-full h-full"
                 allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
-                allowFullScreen></iframe>
+                allowFullScreen
+              ></iframe>
             </div>
 
             {/* Información del Video */}
@@ -41,10 +42,7 @@ export default function VideoGrid({ videos }: { videos: any[] }) {
 
               {/* Indicador visual de "Ver ahora" en Arimo */}
               <div className="mt-4 flex items-center gap-2 text-xs font-sans font-bold text-slate-400 dark:text-slate-500 uppercase tracking-widest">
-                <svg
-                  className="w-4 h-4 text-[#2f86cc]"
-                  fill="currentColor"
-                  viewBox="0 0 24 24">
+                <svg className="w-4 h-4 text-[#2f86cc]" fill="currentColor" viewBox="0 0 24 24">
                   <path d="M8 5v14l11-7z" />
                 </svg>
                 Reproducir Análisis
@@ -54,5 +52,5 @@ export default function VideoGrid({ videos }: { videos: any[] }) {
         ))}
       </div>
     </section>
-  );
+  )
 }

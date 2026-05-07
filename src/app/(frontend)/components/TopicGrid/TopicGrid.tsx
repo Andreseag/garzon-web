@@ -24,7 +24,7 @@ interface TopicGridProps {
 
 export default function TopicGrid({ topicTitle, posts, slugCategory }: TopicGridProps) {
   return (
-    <section className="max-w-7xl mx-auto px-4 my-16">
+    <section className="max-w-7xl mx-auto px-4 my-8">
       {/* Encabezado de la Sección */}
 
       <div className="flex items-center justify-between border-b-2 border-gray-100 dark:border-slate-800 pb-4 mb-10">

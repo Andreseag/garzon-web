@@ -1,18 +1,18 @@
-"use client";
+'use client'
 
-import React from "react";
-import { Mic2, ExternalLink } from "lucide-react";
+import React from 'react'
+import { Mic2, ExternalLink } from 'lucide-react'
 
 interface SpotifyPodcastProps {
-  spotifyUrl: string; // URL de compartir de Spotify
-  title?: string;
-  description?: string;
+  spotifyUrl: string // URL de compartir de Spotify
+  title?: string
+  description?: string
 }
 
 export default function SpotifyPodcast({
   spotifyUrl,
-  title = "Garzón al Oído",
-  description = "Escucha las noticias más importantes y el análisis de la jornada en nuestro podcast diario.",
+  title = 'Garzón al Oído',
+  description = 'Escucha las noticias más importantes y el análisis de la jornada en nuestro podcast diario.',
 }: SpotifyPodcastProps) {
   // Función para convertir URL normal de Spotify en URL de Embed
   // const getEmbedUrl = (url: string) => {
@@ -22,7 +22,7 @@ export default function SpotifyPodcast({
   // const embedUrl = getEmbedUrl(spotifyUrl);
 
   return (
-    <section className="max-w-7xl mx-auto px-4 my-16">
+    <section className="max-w-7xl mx-auto px-4 my-8">
       <div className="bg-slate-50 dark:bg-slate-900/50 rounded-4xl p-6 md:p-10 border border-slate-200 dark:border-slate-800 transition-colors">
         <div className="flex flex-col lg:flex-row gap-10 items-center">
           {/* Lado Izquierdo: Información del Podcast */}
@@ -46,7 +46,8 @@ export default function SpotifyPodcast({
               href={spotifyUrl}
               target="_blank"
               rel="noopener noreferrer"
-              className="inline-flex items-center gap-2 text-[#2f86cc] font-sans font-bold text-sm hover:underline">
+              className="inline-flex items-center gap-2 text-[#2f86cc] font-sans font-bold text-sm hover:underline"
+            >
               Seguir en Spotify <ExternalLink size={14} />
             </a>
           </div>
@@ -55,14 +56,15 @@ export default function SpotifyPodcast({
           <div className="w-full lg:w-100 shadow-2xl rounded-xl overflow-hidden bg-transparent">
             <iframe
               data-testid="embed-iframe"
-              style={{ borderRadius: "12px" }}
+              style={{ borderRadius: '12px' }}
               src={`${spotifyUrl}?utm_source=generator&theme=0`} // theme=0 ayuda a la integración oscura
               width="100%"
               height="152"
               frameBorder="0"
               allowFullScreen
               allow="autoplay; clipboard-write; encrypted-media; fullscreen; picture-in-picture"
-              loading="lazy"></iframe>
+              loading="lazy"
+            ></iframe>
             {/* <iframe
               data-testid="embed-iframe"
               style={{ borderRadius: "12px" }}
@@ -78,5 +80,5 @@ export default function SpotifyPodcast({
         </div>
       </div>
     </section>
-  );
+  )
 }
