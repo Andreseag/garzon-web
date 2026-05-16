@@ -4,6 +4,7 @@ import { notFound } from 'next/navigation'
 import Image from 'next/image'
 import { Media, News, Columnist } from '@/payload-types'
 import { RichText } from '../../components/RichText/RichText'
+import { NewsAudioPlayer } from '../../components/NewsAudioPlayer/NewsAudioPlayer'
 
 interface PageProps {
   params: Promise<{ slug: string }>
@@ -75,6 +76,11 @@ export default async function NewsDetailPage({ params }: PageProps) {
           <time className="text-xs font-bold text-slate-400 uppercase tracking-widest">
             {formattedDate}
           </time>
+        </div>
+
+        {/* REPRODUCTOR DE AUDIO DE LA NOTICIA */}
+        <div className="max-w-xl mx-auto mt-6">
+          <NewsAudioPlayer title={news.title} excerpt={news.excerpt} contentJson={news.content} />
         </div>
       </header>
 
