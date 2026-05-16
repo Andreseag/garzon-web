@@ -99,7 +99,7 @@ export default function Footer() {
             </ul>
           </div>
 
-          {/* <div className="col-span-2 lg:col-span-2 bg-slate-50 dark:bg-slate-900/50 p-6 rounded-2xl border border-slate-100 dark:border-slate-800">
+          <div className="col-span-2 lg:col-span-2 bg-slate-50 dark:bg-slate-900/50 p-6 rounded-2xl border border-slate-100 dark:border-slate-800">
             <h4 className="font-sans font-black uppercase text-[10px] tracking-[0.2em] text-slate-900 dark:text-slate-100 mb-4">
               Suscríbase al Newsletter
             </h4>
@@ -116,7 +116,7 @@ export default function Footer() {
                 Ir
               </button>
             </form>
-          </div> */}
+          </div>
         </div>
 
         {/* PARTE INFERIOR: Copyright */}

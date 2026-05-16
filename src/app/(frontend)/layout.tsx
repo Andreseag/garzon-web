@@ -1,9 +1,11 @@
 import { metadata as siteMetadata } from './metadata'
 import { Arimo, Libre_Baskerville } from 'next/font/google'
 import { Providers } from './providers'
+// @ts-ignore: Allow importing global CSS without type declarations
 import './styles.css'
 import Logo from './components/Logo/Logo'
 import TrendsBar from './components/TrendsBar/TrendsBar'
+import { RadioPlayer } from './components/RadioPlayer/RadioPlayer'
 
 const arimo = Arimo({
   subsets: ['latin'],
@@ -38,8 +40,8 @@ export default function RootLayout({
             <main className="flex min-h-screen w-full max-w-7xl flex-col px-4 bg-white dark:bg-black sm:items-start">
               <Logo />
               <TrendsBar />
-
               {children}
+              <RadioPlayer />
             </main>
           </div>
         </Providers>
