@@ -16,6 +16,18 @@ export function NewsAudioPlayer({ title, excerpt, contentJson }: AudioPlayerProp
   const [voices, setVoices] = useState<SpeechSynthesisVoice[]>([])
   const [selectedVoiceName, setSelectedVoiceName] = useState<string>('')
 
+  // ==========================================
+  // 🔥 EL ARREGLO: Limpieza al salir de la página
+  // ==========================================
+  useEffect(() => {
+    return () => {
+      if (typeof window !== 'undefined' && window.speechSynthesis) {
+        window.speechSynthesis.cancel() // Corta el audio inmediatamente al desmontar
+      }
+    }
+  }, []) // Array vacío para que solo se ejecute al salir de la ruta
+
+  // Tu useEffect original para cargar las voces
   useEffect(() => {
     if (typeof window !== 'undefined' && window.speechSynthesis) {
       const synthInstance = window.speechSynthesis
@@ -25,7 +37,6 @@ export function NewsAudioPlayer({ title, excerpt, contentJson }: AudioPlayerProp
         const esVoices = synthInstance.getVoices().filter((v) => v.lang.startsWith('es'))
         setVoices(esVoices)
         if (esVoices.length > 0 && !selectedVoiceName) {
-          // Ponemos la primera por defecto
           setSelectedVoiceName(esVoices[0].name)
         }
       }
@@ -54,7 +65,6 @@ export function NewsAudioPlayer({ title, excerpt, contentJson }: AudioPlayerProp
     newUtterance.lang = 'es-ES'
     newUtterance.rate = 1.0
 
-    // Asignamos la voz que el usuario seleccionó en el dropdown
     const currentVoice = voices.find((v) => v.name === selectedVoiceName)
     if (currentVoice) newUtterance.voice = currentVoice
 
@@ -145,7 +155,7 @@ export function NewsAudioPlayer({ title, excerpt, contentJson }: AudioPlayerProp
         </div>
       </div>
 
-      {/* SELECTOR DE VOZ (Solo aparece si hay más de una voz disponible) */}
+      {/* SELECTOR DE VOZ */}
       {voices.length > 1 && (
         <div className="flex items-center gap-2 border-t border-slate-200/60 dark:border-slate-800 pt-3 w-full">
           <label className="text-[10px] font-black uppercase tracking-widest text-slate-400">
@@ -155,7 +165,7 @@ export function NewsAudioPlayer({ title, excerpt, contentJson }: AudioPlayerProp
             value={selectedVoiceName}
             onChange={(e) => {
               setSelectedVoiceName(e.target.value)
-              if (isPlaying || isPaused) stopAudio() // Detener si cambia de voz a mitad de lectura
+              if (isPlaying || isPaused) stopAudio()
             }}
             className="text-xs bg-white dark:bg-slate-950 border border-slate-200 dark:border-slate-800 text-slate-700 dark:text-slate-300 rounded-lg px-2 py-1 max-w-xs focus:outline-none focus:border-[#2f86cc]"
           >
