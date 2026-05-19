@@ -1,4 +1,5 @@
 import type { CollectionConfig } from 'payload'
+import { generateAudioHook } from '../hooks/generateAudio'
 
 export const News: CollectionConfig = {
   slug: 'news',
@@ -16,6 +17,10 @@ export const News: CollectionConfig = {
     create: ({ req: { user } }) => !!user,
     update: ({ req: { user } }) => !!user,
     delete: ({ req: { user } }) => !!user,
+  },
+  hooks: {
+    // Activamos el hook para que corra después de guardar los cambios
+    afterChange: [generateAudioHook],
   },
   fields: [
     {
@@ -164,6 +169,20 @@ export const News: CollectionConfig = {
               name: 'metaDescription',
               type: 'textarea',
               label: 'Meta Descripción (SEO)',
+            },
+          ],
+        },
+        {
+          label: 'Speech',
+          fields: [
+            {
+              name: 'audioNews',
+              type: 'relationship',
+              relationTo: 'media',
+              admin: {
+                position: 'sidebar', // Lo mandamos a la barra lateral del admin para que no estorbe
+                readOnly: true, // Que sea de solo lectura para que solo la IA lo gestione
+              },
             },
           ],
         },

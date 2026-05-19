@@ -2,6 +2,7 @@ import Link from 'next/link'
 import Logo from '../Logo/Logo'
 // Importamos los iconos de Lucide (o puedes usar SVGs directos)
 import { Facebook, Instagram, Youtube, Twitter } from 'lucide-react'
+import { NewsletterForm } from '../NewsletterForm/NewsletterForm'
 
 export default function Footer() {
   const categories = [
@@ -106,16 +107,7 @@ export default function Footer() {
             <p className="text-xs text-slate-500 mb-4 font-sans">
               Reciba lo mejor de nuestro periodismo en su correo.
             </p>
-            <form className="flex gap-2">
-              <input
-                type="email"
-                placeholder="Su correo"
-                className="flex-1 bg-white dark:bg-slate-950 border border-slate-200 dark:border-slate-800 rounded-lg px-3 py-2 text-xs font-sans outline-none focus:border-[#2f86cc]"
-              />
-              <button className="bg-[#2f86cc] text-white px-4 py-2 rounded-lg text-xs font-sans font-bold uppercase tracking-widest hover:bg-[#256ea8] transition-colors">
-                Ir
-              </button>
-            </form>
+            <NewsletterForm />
           </div>
         </div>
 

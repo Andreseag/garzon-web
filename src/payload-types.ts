@@ -74,6 +74,7 @@ export interface Config {
     horoscopes: Horoscope;
     galleries: Gallery;
     columnists: Columnist;
+    subscribers: Subscriber;
     'payload-kv': PayloadKv;
     'payload-locked-documents': PayloadLockedDocument;
     'payload-preferences': PayloadPreference;
@@ -88,6 +89,7 @@ export interface Config {
     horoscopes: HoroscopesSelect<false> | HoroscopesSelect<true>;
     galleries: GalleriesSelect<false> | GalleriesSelect<true>;
     columnists: ColumnistsSelect<false> | ColumnistsSelect<true>;
+    subscribers: SubscribersSelect<false> | SubscribersSelect<true>;
     'payload-kv': PayloadKvSelect<false> | PayloadKvSelect<true>;
     'payload-locked-documents': PayloadLockedDocumentsSelect<false> | PayloadLockedDocumentsSelect<true>;
     'payload-preferences': PayloadPreferencesSelect<false> | PayloadPreferencesSelect<true>;
@@ -310,6 +312,7 @@ export interface News {
   author: number | User;
   metaTitle?: string | null;
   metaDescription?: string | null;
+  audioNews?: (number | null) | Media;
   updatedAt: string;
   createdAt: string;
 }
@@ -372,6 +375,16 @@ export interface Gallery {
 }
 /**
  * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "subscribers".
+ */
+export interface Subscriber {
+  id: number;
+  email: string;
+  updatedAt: string;
+  createdAt: string;
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
  * via the `definition` "payload-kv".
  */
 export interface PayloadKv {
@@ -421,6 +434,10 @@ export interface PayloadLockedDocument {
     | ({
         relationTo: 'columnists';
         value: number | Columnist;
+      } | null)
+    | ({
+        relationTo: 'subscribers';
+        value: number | Subscriber;
       } | null);
   globalSlug?: string | null;
   user: {
@@ -550,6 +567,7 @@ export interface NewsSelect<T extends boolean = true> {
   author?: T;
   metaTitle?: T;
   metaDescription?: T;
+  audioNews?: T;
   updatedAt?: T;
   createdAt?: T;
 }
@@ -592,6 +610,15 @@ export interface ColumnistsSelect<T extends boolean = true> {
   image?: T;
   specialty?: T;
   bio?: T;
+  updatedAt?: T;
+  createdAt?: T;
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "subscribers_select".
+ */
+export interface SubscribersSelect<T extends boolean = true> {
+  email?: T;
   updatedAt?: T;
   createdAt?: T;
 }
