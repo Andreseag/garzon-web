@@ -47,10 +47,10 @@ export function NewsletterForm() {
       </button>
 
       {status === 'success' && (
-        <p className="text-[10px] text-green-500 absolute mt-12">¡Gracias por suscribirse!</p>
+        <p className="text-[12px] text-green-500">¡Gracias por suscribirse!</p>
       )}
       {status === 'error' && (
-        <p className="text-[10px] text-red-500 absolute mt-12">Hubo un error, intente de nuevo.</p>
+        <p className="text-[12px] text-red-500">Hubo un error, intente de nuevo.</p>
       )}
     </form>
   )
