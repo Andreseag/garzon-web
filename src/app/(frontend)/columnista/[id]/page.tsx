@@ -76,7 +76,7 @@ export default async function ColumnistDetailPage({ params }: PageProps) {
             {newsItems.map((item: News) => {
               const featuredImage = item.featuredImage as Media
               return (
-                <Link key={item.id} href={`/nota/${item.slug}`} className="group block">
+                <Link key={item.id} href={`/notas/${item.slug}`} className="group block">
                   <div className="relative aspect-[16/9] rounded-2xl overflow-hidden mb-6 bg-slate-100 dark:bg-slate-900">
                     <Image
                       src={featuredImage?.cloudinary?.secure_url || featuredImage?.url || ''}
