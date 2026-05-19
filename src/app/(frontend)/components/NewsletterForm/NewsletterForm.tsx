@@ -30,20 +30,20 @@ export function NewsletterForm() {
   }
 
   return (
-    <form onSubmit={handleSubmit} className="flex gap-2">
+    <form onSubmit={handleSubmit} className="flex gap-2 flex-col">
       <input
         type="email"
         required
         value={email}
         onChange={(e) => setEmail(e.target.value)}
         placeholder="Su correo"
-        className="flex-1 bg-white dark:bg-slate-950 border border-slate-200 dark:border-slate-800 rounded-lg px-3 py-2 text-xs font-sans outline-none focus:border-[#2f86cc]"
+        className="flex-1 bg-white dark:text-white dark:bg-slate-950 border border-slate-200 dark:border-slate-800 rounded-lg px-3 py-2 text-xs font-sans outline-none focus:border-[#2f86cc]"
       />
       <button
         disabled={status === 'loading'}
-        className="bg-[#2f86cc] text-white px-4 py-2 rounded-lg text-xs font-sans font-bold uppercase tracking-widest hover:bg-[#256ea8] transition-colors disabled:opacity-50"
+        className="bg-[#2f86cc] text-white px-4 py-2 rounded-lg text-xs font-sans font-bold capitalize tracking-widest hover:bg-[#256ea8] transition-colors disabled:opacity-50 cursor-pointer"
       >
-        {status === 'loading' ? '...' : 'Ir'}
+        {status === 'loading' ? '...' : 'Suscribirse'}
       </button>
 
       {status === 'success' && (

@@ -11,11 +11,14 @@ export async function POST(req: Request) {
 
   try {
     await payload.create({
-      collection: 'subscribers' as any, // Asegúrate de crear esta colección en Payload
+      collection: 'subscribers' as any,
       data: { email },
     })
     return NextResponse.json({ success: true })
-  } catch (err) {
-    return NextResponse.json({ error: 'Error al guardar' }, { status: 500 })
+  } catch (err: any) {
+    if (err.message?.includes('duplicate key value') || err.message?.includes('already exists')) {
+      return NextResponse.json({ error: 'Este correo ya está suscrito.' }, { status: 409 })
+    }
+    return NextResponse.json({ error: 'Error al procesar la suscripción.' }, { status: 500 })
   }
 }
