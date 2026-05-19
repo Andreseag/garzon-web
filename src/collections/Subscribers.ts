@@ -5,6 +5,11 @@ export const Subscribers: CollectionConfig = {
   admin: {
     useAsTitle: 'email',
     defaultColumns: ['email', 'createdAt'],
+    group: 'Contenido',
+  },
+  labels: {
+    singular: 'Suscriptor',
+    plural: 'Suscriptores',
   },
   access: {
     // Ajusta esto según quién quieres que pueda ver la lista
