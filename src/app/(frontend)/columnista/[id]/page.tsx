@@ -11,6 +11,7 @@ interface PageProps {
 
 export default async function ColumnistDetailPage({ params }: PageProps) {
   const { id } = await params
+  console.log('ID del columnista:', id) // Debug: Verificar que el ID se recibe correctamente
   const payload = await getPayload({ config: configPromise })
 
   // 1. Buscamos los datos del columnista
