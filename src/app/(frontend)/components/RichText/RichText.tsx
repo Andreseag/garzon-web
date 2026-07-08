@@ -3,45 +3,71 @@ import React from 'react'
 export function RichText({ content }: { content: any }) {
   if (!content?.root?.children) return null
 
+  // Función recursiva para renderizar cada nodo
+  const renderNode = (node: any, index: number): React.ReactNode => {
+    switch (node.type) {
+      case 'heading': {
+        const Tag = node.tag as React.ElementType
+        return (
+          <Tag
+            key={index}
+            className="font-sans font-black uppercase text-2xl md:text-3xl mt-8 mb-4 text-slate-900 dark:text-white"
+          >
+            {node.children?.map((child: any, i: number) => renderNode(child, i))}
+          </Tag>
+        )
+      }
+
+      case 'paragraph': {
+        return (
+          <p
+            key={index}
+            className="mb-6 leading-relaxed text-slate-700 dark:text-slate-300 text-lg"
+          >
+            {node.children?.map((child: any, i: number) => renderNode(child, i))}
+          </p>
+        )
+      }
+
+      case 'list': {
+        const Tag = node.tag as React.ElementType // 'ul' o 'ol'
+        return (
+          <Tag
+            key={index}
+            className="mb-6 ml-6 list-disc space-y-2 text-slate-700 dark:text-slate-300"
+          >
+            {node.children?.map((child: any, i: number) => renderNode(child, i))}
+          </Tag>
+        )
+      }
+
+      case 'listitem': {
+        return (
+          <li key={index} className="pl-2">
+            {node.children?.map((child: any, i: number) => renderNode(child, i))}
+          </li>
+        )
+      }
+
+      case 'text': {
+        // Manejo de formatos (1: Bold, 2: Italic, 4: Underline, etc)
+        let text = <>{node.text}</>
+        if (node.format & 1) text = <p>{text}</p>
+        if (node.format & 2) text = <em className="italic">{text}</em>
+        return <span key={index}>{text}</span>
+      }
+
+      case 'linebreak':
+        return <br key={index} />
+
+      default:
+        return null
+    }
+  }
+
   return (
     <div className="lexical-content">
-      {content.root.children.map((node: any, i: number) => {
-        if (node.type === 'heading') {
-          // Usamos 'ElementType' que es el tipo estándar de React para etiquetas dinámicas
-          const Tag = node.tag as React.ElementType
-
-          return (
-            <Tag
-              key={i}
-              className="font-sans font-black tracking-tighter uppercase text-2xl md:text-3xl mt-8 mb-4 text-slate-900 dark:text-white"
-            >
-              {node.children?.map((child: any, j: number) => (
-                <span key={j}>{child.text}</span>
-              ))}
-            </Tag>
-          )
-        }
-
-        if (node.type === 'paragraph') {
-          return (
-            <p key={i} className="mb-6 leading-relaxed text-slate-700 dark:text-slate-300 text-lg">
-              {node.children?.map((child: any, j: number) => {
-                if (child.format === 1) {
-                  // 1 suele ser Bold en Lexical
-                  return (
-                    <strong key={j} className="font-bold">
-                      {child.text}
-                    </strong>
-                  )
-                }
-                return <span key={j}>{child.text}</span>
-              })}
-            </p>
-          )
-        }
-
-        return null
-      })}
+      {content.root.children.map((node: any, i: number) => renderNode(node, i))}
     </div>
   )
 }

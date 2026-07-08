@@ -42,8 +42,6 @@ export default function Home() {
         /> */}
 
       <LensServer />
-
-      <Footer />
     </>
   )
 }

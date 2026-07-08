@@ -7,6 +7,7 @@ import './styles.css'
 import Logo from './components/Logo/Logo'
 import TrendsBar from './components/TrendsBar/TrendsBar'
 import { RadioPlayer } from './components/RadioPlayer/RadioPlayer'
+import Footer from './components/Footer/Footer'
 
 const arimo = Arimo({
   subsets: ['latin'],
@@ -69,6 +70,7 @@ export default function RootLayout({
               <RadioPlayer />
             </main>
           </div>
+          <Footer />
         </Providers>
       </body>
     </html>
