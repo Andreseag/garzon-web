@@ -67,7 +67,7 @@ export default function RootLayout({
               <Logo />
               <TrendsBar />
               {children}
-              <RadioPlayer />
+              {/* <RadioPlayer /> */}
             </main>
           </div>
           <Footer />

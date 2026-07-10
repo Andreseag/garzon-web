@@ -262,6 +262,7 @@ export interface Post {
  */
 export interface News {
   id: number;
+  format?: ('news' | 'person') | null;
   title: string;
   /**
    * Un resumen corto de la noticia para las tarjetas y previsualizaciones (máx. 160 caracteres).
@@ -288,26 +289,32 @@ export interface News {
   };
   featuredImage: number | Media;
   externalVideoUrl?: string | null;
-  newAuthor?: string | null;
   /**
-   * Este campo es obligatorio para la categoría Opinión
+   * Este campo se autocompleta como "Redacción Garzón" para noticias generales.
    */
-  columnist: number | Columnist;
+  newAuthor?: string | null;
   /**
    * Selecciona la categoría principal de la noticia
    */
-  category:
-    | 'ultima-hora'
-    | 'poder-publico'
-    | 'internacional'
-    | 'tecnologia'
-    | 'deportes'
-    | 'economia'
-    | 'ciencia-salud'
-    | 'servicio-social'
-    | 'denuncia-ciudadana'
-    | 'analisis'
-    | 'opinion';
+  category?:
+    | (
+        | 'ultima-hora'
+        | 'poder-publico'
+        | 'internacional'
+        | 'tecnologia'
+        | 'deportes'
+        | 'economia'
+        | 'ciencia-salud'
+        | 'servicio-social'
+        | 'denuncia-ciudadana'
+        | 'analisis'
+        | 'opinion'
+      )
+    | null;
+  /**
+   * Este campo es obligatorio para la categoría Opinión
+   */
+  columnist?: (number | null) | Columnist;
   publishDate: string;
   author: number | User;
   metaTitle?: string | null;
@@ -554,6 +561,7 @@ export interface PostsSelect<T extends boolean = true> {
  * via the `definition` "news_select".
  */
 export interface NewsSelect<T extends boolean = true> {
+  format?: T;
   title?: T;
   excerpt?: T;
   slug?: T;
@@ -561,8 +569,8 @@ export interface NewsSelect<T extends boolean = true> {
   featuredImage?: T;
   externalVideoUrl?: T;
   newAuthor?: T;
-  columnist?: T;
   category?: T;
+  columnist?: T;
   publishDate?: T;
   author?: T;
   metaTitle?: T;

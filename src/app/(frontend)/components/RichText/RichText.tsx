@@ -11,7 +11,7 @@ export function RichText({ content }: { content: any }) {
         return (
           <Tag
             key={index}
-            className="font-sans font-black uppercase text-2xl md:text-3xl mt-8 mb-4 text-slate-900 dark:text-white"
+            className="font-sans font-black capitalize text-2xl md:text-3xl mt-8 mb-4 text-slate-900 dark:text-white"
           >
             {node.children?.map((child: any, i: number) => renderNode(child, i))}
           </Tag>

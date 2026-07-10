@@ -35,14 +35,14 @@ export default async function NewsDetailPage({ params }: PageProps) {
   })
 
   return (
-    <article className="min-h-screen bg-white dark:bg-slate-950 pb-20">
+    <article className="min-h-screen w-full bg-white dark:bg-slate-950 pb-20">
       {/* HEADER DE LA NOTICIA */}
       <header className="max-w-4xl mx-auto px-4 pt-12 md:pt-20 text-center">
         <div className="inline-block px-3 py-1 mb-6 text-[10px] font-black uppercase tracking-[0.2em] bg-[#2f86cc]/10 text-[#2f86cc] rounded-full">
           {news.category?.replace('-', ' ')}
         </div>
 
-        <h1 className="text-3xl md:text-5xl lg:text-6xl font-sans font-black tracking-tighter text-slate-900 dark:text-white leading-[1.1] mb-8">
+        <h1 className="text-2xl md:text-5xl lg:text-5xl font-sans font-black tracking-tighter text-slate-900 dark:text-white leading-[1.1] mb-8">
           {news.title}
         </h1>
 
@@ -53,11 +53,25 @@ export default async function NewsDetailPage({ params }: PageProps) {
         {/* METADATOS */}
         <div className="flex flex-col md:flex-row items-center justify-center gap-4 py-8 border-y border-slate-100 dark:border-slate-800">
           <div className="flex items-center gap-3">
-            {columnist?.image && (
+            {columnist?.image ? (
               <div className="relative w-10 h-10 rounded-full overflow-hidden border border-slate-200">
                 <Image
-                  src={(columnist.image as Media).thumbnailURL || ''}
+                  src={
+                    (columnist.image as Media).thumbnailURL ||
+                    'https://res.cloudinary.com/dnjussrbs/image/upload/v1783439421/payload-media/img-3611_1783439421559.jpg'
+                  }
                   alt={columnist.name}
+                  fill
+                  className="object-cover"
+                />
+              </div>
+            ) : (
+              <div className="relative w-10 h-10 rounded-full overflow-hidden border border-slate-200">
+                <Image
+                  src={
+                    'https://res.cloudinary.com/dnjussrbs/image/upload/v1783439421/payload-media/img-3611_1783439421559.jpg'
+                  }
+                  alt={'Redacción Garzón'}
                   fill
                   className="object-cover"
                 />
@@ -79,9 +93,9 @@ export default async function NewsDetailPage({ params }: PageProps) {
         </div>
 
         {/* REPRODUCTOR DE AUDIO DE LA NOTICIA */}
-        <div className="max-w-xl mx-auto mt-6">
+        {/* <div className="max-w-xl mx-auto mt-6">
           <NewsAudioPlayer title={news.title} excerpt={news.excerpt} contentJson={news.content} />
-        </div>
+        </div> */}
       </header>
 
       {/* IMAGEN DESTACADA */}

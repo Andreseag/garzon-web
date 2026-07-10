@@ -9,7 +9,7 @@ export const News: CollectionConfig = {
   },
   admin: {
     useAsTitle: 'title',
-    defaultColumns: ['title', 'category', 'publishDate', 'status'],
+    defaultColumns: ['title', 'format', 'publishDate', 'status'],
     group: 'Contenido', // Organiza tus colecciones en el sidebar
   },
   access: {
@@ -29,6 +29,18 @@ export const News: CollectionConfig = {
         {
           label: 'Contenido',
           fields: [
+            {
+              name: 'format',
+              type: 'select',
+              defaultValue: 'news',
+              options: [
+                { label: 'Noticia estándar', value: 'news' },
+                { label: 'Persona de la semana', value: 'person' },
+              ],
+              admin: {
+                position: 'sidebar',
+              },
+            },
             {
               name: 'title',
               type: 'text',
@@ -63,6 +75,7 @@ export const News: CollectionConfig = {
                         .toLowerCase()
                         .replace(/ /g, '-')
                         .replace(/[^\w-]+/g, '')
+                        .trim()
                     }
                     return value
                   },
@@ -90,29 +103,30 @@ export const News: CollectionConfig = {
             {
               name: 'newAuthor',
               type: 'text',
-              required: true,
               label: 'Autor de la noticia',
-              admin: {
-                // Si seleccionas un columnista, este campo se puede ocultar o dejar opcional
-                condition: (data) => data.category !== 'opinion',
-              },
-            },
-            {
-              name: 'columnist',
-              label: 'Seleccionar Columnista',
-              type: 'relationship',
-              relationTo: 'columnists', // Nombre de la colección que creamos antes
               required: true,
+              defaultValue: 'Redacción Garzón',
               admin: {
-                position: 'sidebar', // Lo ponemos en el sidebar para que resalte
-                description: 'Este campo es obligatorio para la categoría Opinión',
+                // 1. Oculta el campo si es Opinión (para que puedan elegir otra cosa)
+                condition: (data: Record<string, any>) => data.category !== 'opinion',
+
+                description:
+                  'Este campo se autocompleta como "Redacción Garzón" para noticias generales.',
+              },
+              // 2. Hook de seguridad (Back-end):
+              // Esto asegura que, incluso si alguien intenta enviar datos por API,
+              // el valor se fuerce a "Redacción Garzón" si la categoría es distinta a 'opinion'.
+              hooks: {
+                beforeChange: [
+                  ({ data, value }) => {
+                    if (data?.category !== 'opinion') {
+                      return 'Redacción Garzón'
+                    }
+                    return value
+                  },
+                ],
               },
             },
-          ],
-        },
-        {
-          label: 'Metadatos y Organización',
-          fields: [
             {
               name: 'category',
               type: 'select',
@@ -131,9 +145,33 @@ export const News: CollectionConfig = {
                 { label: 'Opinión', value: 'opinion' },
               ],
               admin: {
+                condition: (data) => data.format !== 'person',
                 description: 'Selecciona la categoría principal de la noticia',
               },
             },
+            {
+              name: 'columnist',
+              label: 'Seleccionar Columnista',
+              type: 'relationship',
+              relationTo: 'columnists', // Nombre de la colección que creamos antes
+              validate: (value: any, { data }: any) => {
+                // Solo es obligatorio si es una noticia de "Opinión"
+                if (data?.category === 'opinion' && !value) {
+                  return 'El columnista es obligatorio para artículos de opinión.'
+                }
+                return true
+              },
+              admin: {
+                position: 'sidebar', // Lo ponemos en el sidebar para que resalte
+                condition: (data) => data.category === 'opinion',
+                description: 'Este campo es obligatorio para la categoría Opinión',
+              },
+            },
+          ],
+        },
+        {
+          label: 'Metadatos y Organización',
+          fields: [
             {
               name: 'publishDate',
               type: 'date',

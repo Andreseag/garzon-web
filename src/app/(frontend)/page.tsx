@@ -26,7 +26,7 @@ export default function Home() {
       <OpinionGridServer />
 
       {/* <ElectionGrid posts={ELECCIONES_DATA} /> */}
-      <HoroscopeServer />
+      {/* <HoroscopeServer /> */}
 
       {/* <VideoGrid videos={VIDEO_POSTS} /> */}
 
