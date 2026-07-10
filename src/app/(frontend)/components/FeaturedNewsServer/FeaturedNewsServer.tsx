@@ -11,11 +11,11 @@ export default async function FeaturedNewsServer() {
     collection: 'news',
     limit: 4,
     sort: '-createdAt',
-    where: {
-      category: {
-        equals: Category.ULTIMA_HORA, // Usamos el enum aquí
-      },
-    },
+    // where: {
+    //   category: {
+    //     equals: Category.ULTIMA_HORA, // Usamos el enum aquí
+    //   },
+    // },
   })
 
   // Mapeamos los datos
