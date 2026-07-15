@@ -28,6 +28,7 @@ export default async function FeaturedNewsServer() {
       title: doc.title,
       excerpt: doc.excerpt || '',
       category: label, // <--- AQUÍ: Ahora pasamos "Última hora" en lugar de "ultima-hora"
+      format: doc.format, // Si es persona, mostramos el nombre
       image:
         typeof doc.featuredImage === 'object'
           ? doc.featuredImage.cloudinary.secure_url || doc.featuredImage.url
