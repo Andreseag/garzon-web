@@ -37,16 +37,16 @@ export default async function NewsDetailPage({ params }: PageProps) {
   return (
     <article className="min-h-screen w-full bg-white dark:bg-slate-950 pb-20">
       {/* HEADER DE LA NOTICIA */}
-      <header className="max-w-4xl mx-auto px-4 pt-12 md:pt-20 text-center">
-        <div className="inline-block px-3 py-1 mb-6 text-[10px] font-black uppercase tracking-[0.2em] bg-[#2f86cc]/10 text-[#2f86cc] rounded-full">
+      <header className="max-w-4xl mx-auto px-4 pt-6 md:pt-20 text-center">
+        <div className="inline-block px-3 py-1 mb-4 text-[10px] font-black uppercase tracking-[0.2em] bg-[#2f86cc]/10 text-[#2f86cc] rounded-full">
           {news.category?.replace('-', ' ')}
         </div>
 
-        <h1 className="text-2xl md:text-5xl lg:text-5xl font-sans font-black tracking-tighter text-slate-900 dark:text-white leading-[1.1] mb-8">
+        <h1 className="text-3xl md:text-5xl lg:text-5xl font-sans font-black tracking-tighter text-slate-900 dark:text-white leading-[1.1] mb-8">
           {news.title}
         </h1>
 
-        <p className="text-xl md:text-2xl text-slate-500 dark:text-slate-400 font-sans italic leading-relaxed mb-10 max-w-3xl mx-auto">
+        <p className="text-lg md:text-2xl text-slate-500 dark:text-slate-400 font-sans italic leading-relaxed mb-6 max-w-3xl mx-auto">
           "{news.excerpt}"
         </p>
 
@@ -99,7 +99,7 @@ export default async function NewsDetailPage({ params }: PageProps) {
       </header>
 
       {/* IMAGEN DESTACADA */}
-      <div className="max-w-6xl mx-auto px-4 my-12">
+      <div className="max-w-6xl mx-auto px-4 my-6">
         <div className="relative aspect-video rounded-3xl overflow-hidden shadow-2xl">
           <Image
             src={featuredImage.cloudinary?.secure_url || featuredImage.url || ''}

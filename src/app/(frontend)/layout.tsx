@@ -6,7 +6,7 @@ import Script from 'next/script'
 import './styles.css'
 import Logo from './components/Logo/Logo'
 import TrendsBar from './components/TrendsBar/TrendsBar'
-import { RadioPlayer } from './components/RadioPlayer/RadioPlayer'
+// import { RadioPlayer } from './components/RadioPlayer/RadioPlayer'
 import Footer from './components/Footer/Footer'
 
 const arimo = Arimo({
@@ -64,7 +64,7 @@ export default function RootLayout({
         <Providers>
           <div className="flex min-h-screen items-center justify-center bg-zinc-50 font-sans dark:bg-black">
             <main className="flex min-h-screen w-full max-w-7xl flex-col px-4 bg-white dark:bg-black sm:items-start">
-              <Logo />
+              <Logo isHeader={true} />
               <TrendsBar />
               {children}
               {/* <RadioPlayer /> */}

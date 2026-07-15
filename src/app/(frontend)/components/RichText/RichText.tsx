@@ -11,7 +11,7 @@ export function RichText({ content }: { content: any }) {
         return (
           <Tag
             key={index}
-            className="font-sans font-black capitalize text-2xl md:text-3xl mt-8 mb-4 text-slate-900 dark:text-white"
+            className="font-sans font-black capitalize text-xl md:text-3xl mt-8 mb-4 text-slate-900 dark:text-white"
           >
             {node.children?.map((child: any, i: number) => renderNode(child, i))}
           </Tag>
@@ -42,7 +42,11 @@ export function RichText({ content }: { content: any }) {
       }
 
       case 'listitem': {
-        return (
+        return node.tag === 'ol' ? (
+          <li key={index} className="pl-2 list-decimal">
+            {node.children?.map((child: any, i: number) => renderNode(child, i))}
+          </li>
+        ) : (
           <li key={index} className="pl-2">
             {node.children?.map((child: any, i: number) => renderNode(child, i))}
           </li>
@@ -59,6 +63,16 @@ export function RichText({ content }: { content: any }) {
 
       case 'linebreak':
         return <br key={index} />
+
+      case 'quote':
+        return (
+          <blockquote
+            key={index}
+            className="border-l-4 text-xl border-slate-300 pl-4 italic text-slate-600 dark:text-slate-400 font-semibold"
+          >
+            {node.children?.map((child: any, i: number) => renderNode(child, i))}
+          </blockquote>
+        )
 
       default:
         return null
