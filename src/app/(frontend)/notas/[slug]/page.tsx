@@ -52,7 +52,8 @@ export default async function NewsDetailPage({ params }: PageProps) {
         {/* HEADER DE LA NOTICIA */}
         <header className="max-w-4xl mx-auto px-4 pt-6 md:pt-20 text-center">
           <div className="inline-block px-3 py-1 mb-4 text-[10px] font-black uppercase tracking-[0.2em] bg-[#2f86cc]/10 text-[#2f86cc] rounded-full">
-            {news.category?.replace('-', ' ')}
+            {news.category?.replace('-', ' ') ||
+              (news.format === 'person' && 'Persona de la semana')}
           </div>
 
           <h1 className="text-3xl md:text-5xl lg:text-5xl font-sans font-black tracking-tighter text-slate-900 dark:text-white leading-[1.1] mb-8">
