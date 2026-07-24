@@ -14,6 +14,7 @@ import { Horoscope } from './collections/Horoscope'
 import { Galleries } from './collections/Galleries'
 import { Columnists } from './collections/Columnists'
 import { Subscribers } from './collections/Subscribers'
+import { FestivalEvents } from './collections/FestivalEvents'
 
 const filename = fileURLToPath(import.meta.url)
 const dirname = path.dirname(filename)
@@ -25,7 +26,17 @@ export default buildConfig({
       baseDir: path.resolve(dirname),
     },
   },
-  collections: [Users, Media, Posts, News, Horoscope, Galleries, Columnists, Subscribers],
+  collections: [
+    Users,
+    Media,
+    Posts,
+    News,
+    Horoscope,
+    Galleries,
+    Columnists,
+    Subscribers,
+    FestivalEvents,
+  ],
   editor: lexicalEditor(),
   secret: process.env.PAYLOAD_SECRET || '',
   typescript: {

@@ -75,6 +75,7 @@ export interface Config {
     galleries: Gallery;
     columnists: Columnist;
     subscribers: Subscriber;
+    'festival-events': FestivalEvent;
     'payload-kv': PayloadKv;
     'payload-locked-documents': PayloadLockedDocument;
     'payload-preferences': PayloadPreference;
@@ -90,6 +91,7 @@ export interface Config {
     galleries: GalleriesSelect<false> | GalleriesSelect<true>;
     columnists: ColumnistsSelect<false> | ColumnistsSelect<true>;
     subscribers: SubscribersSelect<false> | SubscribersSelect<true>;
+    'festival-events': FestivalEventsSelect<false> | FestivalEventsSelect<true>;
     'payload-kv': PayloadKvSelect<false> | PayloadKvSelect<true>;
     'payload-locked-documents': PayloadLockedDocumentsSelect<false> | PayloadLockedDocumentsSelect<true>;
     'payload-preferences': PayloadPreferencesSelect<false> | PayloadPreferencesSelect<true>;
@@ -392,6 +394,48 @@ export interface Subscriber {
 }
 /**
  * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "festival-events".
+ */
+export interface FestivalEvent {
+  id: number;
+  title: string;
+  /**
+   * URL amigable para el evento (ej: concierto-principal)
+   */
+  slug: string;
+  date: string;
+  category: 'musica' | 'gastronomia' | 'deporte' | 'religioso' | 'cultural';
+  location?: string | null;
+  /**
+   * Ej: "Entrada libre", "$20.000 COP", etc.
+   */
+  price?: string | null;
+  featuredImage?: (number | null) | Media;
+  isFeatured?: boolean | null;
+  /**
+   * Enlace externo para que el usuario compre o pregunte.
+   */
+  promoUrl?: string | null;
+  description?: {
+    root: {
+      type: string;
+      children: {
+        type: any;
+        version: number;
+        [k: string]: unknown;
+      }[];
+      direction: ('ltr' | 'rtl') | null;
+      format: 'left' | 'start' | 'center' | 'right' | 'end' | 'justify' | '';
+      indent: number;
+      version: number;
+    };
+    [k: string]: unknown;
+  } | null;
+  updatedAt: string;
+  createdAt: string;
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
  * via the `definition` "payload-kv".
  */
 export interface PayloadKv {
@@ -445,6 +489,10 @@ export interface PayloadLockedDocument {
     | ({
         relationTo: 'subscribers';
         value: number | Subscriber;
+      } | null)
+    | ({
+        relationTo: 'festival-events';
+        value: number | FestivalEvent;
       } | null);
   globalSlug?: string | null;
   user: {
@@ -627,6 +675,24 @@ export interface ColumnistsSelect<T extends boolean = true> {
  */
 export interface SubscribersSelect<T extends boolean = true> {
   email?: T;
+  updatedAt?: T;
+  createdAt?: T;
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "festival-events_select".
+ */
+export interface FestivalEventsSelect<T extends boolean = true> {
+  title?: T;
+  slug?: T;
+  date?: T;
+  category?: T;
+  location?: T;
+  price?: T;
+  featuredImage?: T;
+  isFeatured?: T;
+  promoUrl?: T;
+  description?: T;
   updatedAt?: T;
   createdAt?: T;
 }
