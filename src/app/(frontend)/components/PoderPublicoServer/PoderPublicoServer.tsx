@@ -42,21 +42,26 @@ export default async function PoderPublicoServer() {
 
   if (formattedPosts.length <= 4) return null
 
+  // Verificamos si hay promociones activas
+  const hasPromos = promosRes.docs && promosRes.docs.length > 0
+
   return (
     <section className="max-w-7xl mx-auto px-4 py-8">
       <div className="grid grid-cols-1 lg:grid-cols-4 gap-8 items-start">
-        {/* Sidebar Lateral con la Publicidad Vertical: order-1 en mobile (va primero), lg:order-2 en desktop (va a la derecha) */}
-        <aside className="lg:col-span-1 lg:sticky top-6 order-1 lg:order-2">
-          <div className="flex flex-col gap-4">
-            <h3 className="text-xs font-bold uppercase tracking-wider text-slate-400 border-b border-slate-800 pb-2">
-              Patrocinado
-            </h3>
-            <GlobalVerticalPromoSlider promos={promosRes.docs} />
-          </div>
-        </aside>
+        {/* Sidebar Lateral con la Publicidad Vertical: Solo se renderiza si existen promos */}
+        {hasPromos && (
+          <aside className="lg:col-span-1 lg:sticky top-6 order-1 lg:order-2">
+            <div className="flex flex-col gap-4">
+              <h3 className="text-xs font-bold uppercase tracking-wider text-slate-400 border-b border-slate-800 pb-2">
+                Patrocinado
+              </h3>
+              <GlobalVerticalPromoSlider promos={promosRes.docs} />
+            </div>
+          </aside>
+        )}
 
-        {/* Contenido principal (Grid de noticias): order-2 en mobile (va después), lg:order-1 en desktop (va a la izquierda) */}
-        <div className="lg:col-span-3 order-2 lg:order-1">
+        {/* Contenido principal (Grid de noticias): Ocupa 3 columnas si hay promos, o las 4 columnas completas si no hay */}
+        <div className={hasPromos ? 'lg:col-span-3 order-2 lg:order-1' : 'lg:col-span-4'}>
           <TopicGrid
             slugCategory="poder-publico"
             topicTitle="Poder público"
