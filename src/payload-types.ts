@@ -75,6 +75,7 @@ export interface Config {
     galleries: Gallery;
     columnists: Columnist;
     subscribers: Subscriber;
+    promotions: Promotion;
     'payload-kv': PayloadKv;
     'payload-locked-documents': PayloadLockedDocument;
     'payload-preferences': PayloadPreference;
@@ -90,6 +91,7 @@ export interface Config {
     galleries: GalleriesSelect<false> | GalleriesSelect<true>;
     columnists: ColumnistsSelect<false> | ColumnistsSelect<true>;
     subscribers: SubscribersSelect<false> | SubscribersSelect<true>;
+    promotions: PromotionsSelect<false> | PromotionsSelect<true>;
     'payload-kv': PayloadKvSelect<false> | PayloadKvSelect<true>;
     'payload-locked-documents': PayloadLockedDocumentsSelect<false> | PayloadLockedDocumentsSelect<true>;
     'payload-preferences': PayloadPreferencesSelect<false> | PayloadPreferencesSelect<true>;
@@ -392,6 +394,23 @@ export interface Subscriber {
 }
 /**
  * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "promotions".
+ */
+export interface Promotion {
+  id: number;
+  title: string;
+  isActive?: boolean | null;
+  horizontalImageDesktop: number | Media;
+  horizontalImageMobile: number | Media;
+  verticalImageDesktop?: (number | null) | Media;
+  verticalImageMobile?: (number | null) | Media;
+  ctaUrl?: string | null;
+  ctaText?: string | null;
+  updatedAt: string;
+  createdAt: string;
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
  * via the `definition` "payload-kv".
  */
 export interface PayloadKv {
@@ -445,6 +464,10 @@ export interface PayloadLockedDocument {
     | ({
         relationTo: 'subscribers';
         value: number | Subscriber;
+      } | null)
+    | ({
+        relationTo: 'promotions';
+        value: number | Promotion;
       } | null);
   globalSlug?: string | null;
   user: {
@@ -627,6 +650,22 @@ export interface ColumnistsSelect<T extends boolean = true> {
  */
 export interface SubscribersSelect<T extends boolean = true> {
   email?: T;
+  updatedAt?: T;
+  createdAt?: T;
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "promotions_select".
+ */
+export interface PromotionsSelect<T extends boolean = true> {
+  title?: T;
+  isActive?: T;
+  horizontalImageDesktop?: T;
+  horizontalImageMobile?: T;
+  verticalImageDesktop?: T;
+  verticalImageMobile?: T;
+  ctaUrl?: T;
+  ctaText?: T;
   updatedAt?: T;
   createdAt?: T;
 }

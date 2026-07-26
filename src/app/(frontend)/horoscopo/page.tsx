@@ -45,7 +45,7 @@ export default async function HoroscopePage() {
         <h1 className="text-5xl font-sans font-black uppercase tracking-tighter text-slate-900 dark:text-white mb-4">
           Horóscopo <span className="text-[#2f86cc]">Garzón Web</span>
         </h1>
-        <p className="text-slate-500 font-sans font-medium uppercase tracking-widest text-sm">
+        <p className="text-slate-500 font-sans font-medium uppercase tracking-widest text-sm ">
           Predicciones para el {displayDate}
         </p>
       </header>
