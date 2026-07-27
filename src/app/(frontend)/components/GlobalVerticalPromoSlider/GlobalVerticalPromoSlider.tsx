@@ -34,7 +34,7 @@ export const GlobalVerticalPromoSlider = ({ promos }: GlobalVerticalPromoSliderP
     <div className="relative w-full bg-slate-950 text-white overflow-hidden shadow-lg border border-blue-900/30 rounded-xl">
       {/* Contenedor vertical con proporción fija ideal para banners laterales */}
       <div className="relative h-[138px] lg:h-[500px] w-full flex items-center justify-center overflow-hidden bg-slate-950">
-        {activePromos.map((promo, idx) => {
+        {activePromos.reverse().map((promo, idx) => {
           const dImg = promo.verticalImageDesktop as Media
           const dUrl = dImg?.cloudinary?.secure_url || dImg?.url || ''
 
