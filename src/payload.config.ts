@@ -15,6 +15,7 @@ import { Galleries } from './collections/Galleries'
 import { Columnists } from './collections/Columnists'
 import { Subscribers } from './collections/Subscribers'
 import { FestivalEvents } from './collections/FestivalEvents'
+import { Promotions } from './collections/Promotions'
 
 const filename = fileURLToPath(import.meta.url)
 const dirname = path.dirname(filename)
@@ -36,6 +37,7 @@ export default buildConfig({
     Columnists,
     Subscribers,
     FestivalEvents,
+    Promotions,
   ],
   editor: lexicalEditor(),
   secret: process.env.PAYLOAD_SECRET || '',
