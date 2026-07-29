@@ -1,4 +1,4 @@
-import { MapPin, Calendar, CalendarPlus, Share2 } from 'lucide-react'
+import { MapPin, Calendar, CalendarPlus, Share2, Navigation } from 'lucide-react'
 import Image from 'next/image'
 import { Media } from '@/payload-types'
 
@@ -70,34 +70,53 @@ export const EventCard = ({ event }: EventCardProps) => {
           </div>
         </div>
 
-        {/* Acciones */}
-        <div className="flex items-center justify-between pt-4 border-t border-slate-100 dark:border-slate-800">
-          <div className="flex gap-2">
+        {/* Acciones Mejoradas */}
+        <div className="pt-4 border-t border-slate-100 dark:border-slate-800 flex flex-col gap-3">
+          {/* Botones secundarios con texto y mejor área táctil */}
+          <div className="grid grid-cols-2 sm:flex sm:flex-wrap gap-2">
             {/* Google Calendar */}
             <a
               href={getGoogleCalendarUrl()}
               target="_blank"
-              title="Añadir al calendario"
-              className="p-2 text-slate-400 hover:text-[#2f86cc] hover:bg-blue-50 dark:hover:bg-slate-800 rounded-lg transition-colors"
+              rel="noopener noreferrer"
+              className="flex items-center justify-center gap-1.5 px-3 py-2 text-xs font-medium text-slate-700 dark:text-slate-300 bg-slate-100 dark:bg-slate-800 hover:bg-blue-50 hover:text-[#2f86cc] dark:hover:bg-slate-700 rounded-xl transition-colors flex-1"
             >
-              <CalendarPlus size={20} />
+              <CalendarPlus size={16} />
+              <span>Agendar</span>
             </a>
+
+            {/* Google Maps (Se muestra solo si existe la URL en el evento) */}
+            {event.googleMapsUrl && (
+              <a
+                href={event.googleMapsUrl}
+                target="_blank"
+                rel="noopener noreferrer"
+                className="flex items-center justify-center gap-1.5 px-3 py-2 text-xs font-medium text-slate-700 dark:text-slate-300 bg-slate-100 dark:bg-slate-800 hover:bg-red-50 hover:text-red-600 dark:hover:bg-slate-700 rounded-xl transition-colors flex-1"
+              >
+                <Navigation size={16} />
+                <span>Ubicación</span>
+              </a>
+            )}
+
             {/* WhatsApp */}
             <a
               href={getWhatsAppShareUrl()}
               target="_blank"
-              title="Compartir por WhatsApp"
-              className="p-2 border text-slate-400 hover:text-green-600 hover:bg-green-50 dark:hover:bg-slate-800 rounded-lg transition-colors"
+              rel="noopener noreferrer"
+              className="flex items-center justify-center gap-1.5 px-3 py-2 text-xs font-medium text-slate-700 dark:text-slate-300 bg-slate-100 dark:bg-slate-800 hover:bg-green-50 hover:text-green-600 dark:hover:bg-slate-700 rounded-xl transition-colors flex-1"
             >
-              <Share2 size={20} />
+              <Share2 size={16} />
+              <span>Compartir</span>
             </a>
           </div>
 
+          {/* Botón Principal de Tickets / Info (Ancho completo para máxima visibilidad) */}
           {event.promoUrl && (
             <a
               href={event.promoUrl}
               target="_blank"
-              className="bg-slate-900 dark:bg-white text-white dark:text-slate-900 px-4 py-2 rounded-lg text-xs font-bold hover:bg-[#2f86cc] transition-colors"
+              rel="noopener noreferrer"
+              className="w-full flex items-center justify-center bg-slate-900 dark:bg-white text-white dark:text-slate-900 py-2.5 px-4 rounded-xl text-xs font-bold uppercase tracking-wider hover:bg-[#2f86cc] dark:hover:bg-[#2f86cc] dark:hover:text-white transition-colors shadow-sm"
             >
               Info / Tickets
             </a>

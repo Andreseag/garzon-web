@@ -4,6 +4,7 @@ import * as migration_20260224_165347_update_condition_columnist from './2026022
 import * as migration_20260224_165731_add_sinopsis_to_news from './20260224_165731_add_sinopsis_to_news';
 import * as migration_20260725_000100_add_promotions from './20260725_000100_add_promotions';
 import * as migration_20260725_035837_update_promotions from './20260725_035837_update_promotions';
+import * as migration_20260728_185935 from './20260728_185935';
 
 export const migrations = [
   {
@@ -34,6 +35,11 @@ export const migrations = [
   {
     up: migration_20260725_035837_update_promotions.up,
     down: migration_20260725_035837_update_promotions.down,
-    name: '20260725_035837_update_promotions'
+    name: '20260725_035837_update_promotions',
+  },
+  {
+    up: migration_20260728_185935.up,
+    down: migration_20260728_185935.down,
+    name: '20260728_185935'
   },
 ];

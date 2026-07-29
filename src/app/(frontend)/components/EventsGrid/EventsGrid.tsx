@@ -1,4 +1,5 @@
 import { EventCard } from '../EventCard/EventCard'
+import GenericCarousel from '../GenericCarousel/GenericCarousel' // Ajusta la ruta según tu estructura
 
 export const EventsGrid = ({ events }: { events: any[] }) => {
   if (events.length === 0) {
@@ -8,10 +9,14 @@ export const EventsGrid = ({ events }: { events: any[] }) => {
   }
 
   return (
-    <section className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
-      {events.map((event) => (
-        <EventCard key={event.id} event={event} />
-      ))}
+    <section className="max-w-7xl mx-auto px-4 my-8 w-full">
+      <GenericCarousel title="Próximos Eventos">
+        {events.map((event) => (
+          <div key={event.id} className="flex-shrink-0 w-[260px] sm:w-[350px] md:w-[380px]">
+            <EventCard event={event} />
+          </div>
+        ))}
+      </GenericCarousel>
     </section>
   )
 }

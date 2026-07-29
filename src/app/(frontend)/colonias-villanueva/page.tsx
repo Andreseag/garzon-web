@@ -1,19 +1,14 @@
 import { getPayload } from 'payload'
 import configPromise from '@payload-config'
-import { DateTabs } from '../components/DateTabs/DateTabs'
-import { EventsGrid } from '../components/EventsGrid/EventsGrid'
 import { FeaturedCarousel } from '../components/FeaturedCarousel/FeaturedCarousel'
 import { Hero } from '../components/Hero/Hero'
+import ColoniasContent from '../components/ColoniasContent/ColoniasContent'
+import TurismoServer from '../components/TurismoServer/TurismoServer'
 
-interface PageProps {
-  searchParams: Promise<{ day?: string }>
-}
-
-export default async function ColoniasPage({ searchParams }: PageProps) {
-  const { day } = await searchParams
+export default async function ColoniasPage() {
   const payload = await getPayload({ config: configPromise })
 
-  // Traemos todos los eventos ordenados por fecha
+  // Traemos todos los eventos ordenados por fecha una sola vez
   const { docs: allEvents } = await payload.find({
     collection: 'festival-events',
     sort: 'date',
@@ -24,31 +19,24 @@ export default async function ColoniasPage({ searchParams }: PageProps) {
     new Set(allEvents.map((e) => new Date(e.date).toISOString().split('T')[0])),
   ).sort()
 
-  const selectedDay = day || uniqueDates[0]
-
-  // Filtramos los eventos para la vista actual
-  const filteredEvents = allEvents.filter(
-    (e) => new Date(e.date).toISOString().split('T')[0] === selectedDay,
-  )
-
   const featuredEvents = allEvents.filter((e) => e.isFeatured)
 
   return (
-    <main className="w-full mx-auto px-4 py-20">
-      <Hero />
+    <main className="w-full mx-auto pb-20">
+      {/* <Hero />
 
-      <h1 className="text-4xl mt-20 md:text-6xl text-stone-50 text-center mb-8 tracking-tighter">
+      <h1 className="text-3xl font-bold mt-20 md:text-5xl text-stone-900 dark:text-stone-50 text-center mb-8 tracking-tighter">
         Programación Colonias
-      </h1>
+      </h1> */}
 
       {/* Solo mostramos si hay destacados */}
       {featuredEvents.length > 0 && <FeaturedCarousel events={featuredEvents} />}
 
-      {/* Tabs */}
-      <DateTabs availableDates={uniqueDates} />
-
-      {/* Grid */}
-      <EventsGrid events={filteredEvents} />
+      {/* Contenedor cliente que maneja el estado de los tabs y el filtrado */}
+      <ColoniasContent allEvents={allEvents} uniqueDates={uniqueDates}>
+        {/* TurismoServer se ejecuta en el servidor y entra como hijo sin romper nada */}
+        <TurismoServer />
+      </ColoniasContent>
     </main>
   )
 }

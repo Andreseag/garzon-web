@@ -62,6 +62,14 @@ export const FestivalEvents: CollectionConfig = {
       label: 'Lugar del evento',
     },
     {
+      name: 'googleMapsUrl',
+      type: 'text',
+      label: 'Enlace de Google Maps',
+      admin: {
+        description: 'Pega el enlace de compartir de Google Maps aquí',
+      },
+    },
+    {
       name: 'price',
       type: 'text',
       label: 'Costo de entrada',
