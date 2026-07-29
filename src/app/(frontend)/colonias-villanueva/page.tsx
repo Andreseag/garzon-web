@@ -23,12 +23,6 @@ export default async function ColoniasPage() {
 
   return (
     <main className="w-full mx-auto pb-20">
-      {/* <Hero />
-
-      <h1 className="text-3xl font-bold mt-20 md:text-5xl text-stone-900 dark:text-stone-50 text-center mb-8 tracking-tighter">
-        Programación Colonias
-      </h1> */}
-
       {/* Solo mostramos si hay destacados */}
       {featuredEvents.length > 0 && <FeaturedCarousel events={featuredEvents} />}
 
