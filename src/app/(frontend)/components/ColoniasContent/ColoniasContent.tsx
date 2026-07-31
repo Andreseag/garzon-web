@@ -18,9 +18,15 @@ export default function ColoniasContent({
   const [selectedDay, setSelectedDay] = useState(uniqueDates[0] || '')
 
   // Filtramos los eventos de forma instantánea en el cliente
-  const filteredEvents = allEvents.filter(
-    (e) => new Date(e.date).toISOString().split('T')[0] === selectedDay,
-  )
+  const filteredEvents = allEvents.filter((e) => {
+    const dateObj = new Date(e.date)
+    const year = dateObj.getFullYear()
+    const month = String(dateObj.getMonth() + 1).padStart(2, '0')
+    const day = String(dateObj.getDate()).padStart(2, '0')
+
+    const localDateString = `${year}-${month}-${day}`
+    return localDateString === selectedDay
+  })
 
   return (
     <>

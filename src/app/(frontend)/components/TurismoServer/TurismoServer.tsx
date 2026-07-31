@@ -28,8 +28,8 @@ export default async function TurismoServer() {
       {restaurants.length > 0 && (
         <section>
           <GenericCarousel title="Gastronomía y Restaurantes">
-            {restaurants.map((restaurant) => (
-              <div key={restaurant.id} className="flex-shrink-0 w-[280px]">
+            {restaurants.map((restaurant, index) => (
+              <div key={`${restaurant.id}-${index}`} className="flex-shrink-0 w-[280px]">
                 <TouristCard item={restaurant} type="restaurant" />
               </div>
             ))}

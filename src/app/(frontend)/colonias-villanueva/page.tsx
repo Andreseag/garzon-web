@@ -16,7 +16,15 @@ export default async function ColoniasPage() {
 
   // Extraemos fechas únicas para los tabs
   const uniqueDates = Array.from(
-    new Set(allEvents.map((e) => new Date(e.date).toISOString().split('T')[0])),
+    new Set(
+      allEvents.map((e) => {
+        const dateObj = new Date(e.date)
+        const year = dateObj.getFullYear()
+        const month = String(dateObj.getMonth() + 1).padStart(2, '0')
+        const day = String(dateObj.getDate()).padStart(2, '0')
+        return `${year}-${month}-${day}`
+      }),
+    ),
   ).sort()
 
   const featuredEvents = allEvents.filter((e) => e.isFeatured)

@@ -21,7 +21,7 @@ export default function Home() {
   return (
     <>
       {/* Modal que aparece por defecto al cargar */}
-      <DefaultModal />
+      {/* <DefaultModal /> */}
 
       <FeaturedNewsServer />
 

@@ -1,18 +1,24 @@
 'use client'
 
 import { useState, useEffect } from 'react'
+import { usePathname } from 'next/navigation'
 import Image from 'next/image'
 import Link from 'next/link'
 import { ArrowRight, Sparkles } from 'lucide-react'
 import { Modal } from '../Modal/Modal'
 
 export function DefaultModal() {
+  const pathname = usePathname()
   const [isOpen, setIsOpen] = useState(false)
 
-  // Se abre automáticamente al cargar la página
+  const isColoniasVillanueva = pathname?.startsWith('/colonias-villanueva')
+
+  // No mostrar el modal en la ruta de colonias-villanueva
   useEffect(() => {
-    setIsOpen(true)
-  }, [])
+    if (!isColoniasVillanueva) {
+      setIsOpen(true)
+    }
+  }, [isColoniasVillanueva])
 
   return (
     <Modal
