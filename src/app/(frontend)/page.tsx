@@ -13,12 +13,16 @@ import HoroscopeServer from './components/HoroscopeServer/HoroscopeServer'
 import ScienceTechServer from './components/ScienceTechServer/ScienceTechServer'
 import LensServer from './components/LensServer/LensServer'
 import OpinionGridServer from './components/OpinionGridServer/OpinionGridServer'
+import { DefaultModal } from './components/DefaultModal/DefaultModal'
 
 export const dynamic = 'force-dynamic'
 
 export default function Home() {
   return (
     <>
+      {/* Modal que aparece por defecto al cargar */}
+      {/* <DefaultModal /> */}
+
       <FeaturedNewsServer />
 
       <PoderPublicoServer />

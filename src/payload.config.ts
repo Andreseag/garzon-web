@@ -14,7 +14,10 @@ import { Horoscope } from './collections/Horoscope'
 import { Galleries } from './collections/Galleries'
 import { Columnists } from './collections/Columnists'
 import { Subscribers } from './collections/Subscribers'
+import { FestivalEvents } from './collections/FestivalEvents'
 import { Promotions } from './collections/Promotions'
+import { Hotels } from './collections/Hotels'
+import { Restaurants } from './collections/Restaurants'
 
 const filename = fileURLToPath(import.meta.url)
 const dirname = path.dirname(filename)
@@ -35,7 +38,10 @@ export default buildConfig({
     Galleries,
     Columnists,
     Subscribers,
+    FestivalEvents,
     Promotions,
+    Hotels,
+    Restaurants,
   ],
   editor: lexicalEditor(),
   secret: process.env.PAYLOAD_SECRET || '',

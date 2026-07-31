@@ -75,7 +75,10 @@ export interface Config {
     galleries: Gallery;
     columnists: Columnist;
     subscribers: Subscriber;
+    'festival-events': FestivalEvent;
     promotions: Promotion;
+    hotels: Hotel;
+    restaurants: Restaurant;
     'payload-kv': PayloadKv;
     'payload-locked-documents': PayloadLockedDocument;
     'payload-preferences': PayloadPreference;
@@ -91,7 +94,10 @@ export interface Config {
     galleries: GalleriesSelect<false> | GalleriesSelect<true>;
     columnists: ColumnistsSelect<false> | ColumnistsSelect<true>;
     subscribers: SubscribersSelect<false> | SubscribersSelect<true>;
+    'festival-events': FestivalEventsSelect<false> | FestivalEventsSelect<true>;
     promotions: PromotionsSelect<false> | PromotionsSelect<true>;
+    hotels: HotelsSelect<false> | HotelsSelect<true>;
+    restaurants: RestaurantsSelect<false> | RestaurantsSelect<true>;
     'payload-kv': PayloadKvSelect<false> | PayloadKvSelect<true>;
     'payload-locked-documents': PayloadLockedDocumentsSelect<false> | PayloadLockedDocumentsSelect<true>;
     'payload-preferences': PayloadPreferencesSelect<false> | PayloadPreferencesSelect<true>;
@@ -394,6 +400,52 @@ export interface Subscriber {
 }
 /**
  * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "festival-events".
+ */
+export interface FestivalEvent {
+  id: number;
+  title: string;
+  /**
+   * URL amigable para el evento (ej: concierto-principal)
+   */
+  slug: string;
+  date: string;
+  category: 'musica' | 'gastronomia' | 'deporte' | 'religioso' | 'cultural';
+  location?: string | null;
+  /**
+   * Pega el enlace de compartir de Google Maps aquí
+   */
+  googleMapsUrl?: string | null;
+  /**
+   * Ej: "Entrada libre", "$20.000 COP", etc.
+   */
+  price?: string | null;
+  featuredImage?: (number | null) | Media;
+  isFeatured?: boolean | null;
+  /**
+   * Enlace externo para que el usuario compre o pregunte.
+   */
+  promoUrl?: string | null;
+  description?: {
+    root: {
+      type: string;
+      children: {
+        type: any;
+        version: number;
+        [k: string]: unknown;
+      }[];
+      direction: ('ltr' | 'rtl') | null;
+      format: 'left' | 'start' | 'center' | 'right' | 'end' | 'justify' | '';
+      indent: number;
+      version: number;
+    };
+    [k: string]: unknown;
+  } | null;
+  updatedAt: string;
+  createdAt: string;
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
  * via the `definition` "promotions".
  */
 export interface Promotion {
@@ -406,6 +458,39 @@ export interface Promotion {
   verticalImageMobile?: (number | null) | Media;
   ctaUrl?: string | null;
   ctaText?: string | null;
+  updatedAt: string;
+  createdAt: string;
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "hotels".
+ */
+export interface Hotel {
+  id: number;
+  name: string;
+  description?: string | null;
+  featuredImage: number | Media;
+  location?: string | null;
+  googleMapsUrl?: string | null;
+  phone?: string | null;
+  bookingUrl?: string | null;
+  updatedAt: string;
+  createdAt: string;
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "restaurants".
+ */
+export interface Restaurant {
+  id: number;
+  name: string;
+  description?: string | null;
+  cuisineType?: string | null;
+  featuredImage: number | Media;
+  location?: string | null;
+  googleMapsUrl?: string | null;
+  phone?: string | null;
+  menuUrl?: string | null;
   updatedAt: string;
   createdAt: string;
 }
@@ -466,8 +551,20 @@ export interface PayloadLockedDocument {
         value: number | Subscriber;
       } | null)
     | ({
+        relationTo: 'festival-events';
+        value: number | FestivalEvent;
+      } | null)
+    | ({
         relationTo: 'promotions';
         value: number | Promotion;
+      } | null)
+    | ({
+        relationTo: 'hotels';
+        value: number | Hotel;
+      } | null)
+    | ({
+        relationTo: 'restaurants';
+        value: number | Restaurant;
       } | null);
   globalSlug?: string | null;
   user: {
@@ -655,6 +752,25 @@ export interface SubscribersSelect<T extends boolean = true> {
 }
 /**
  * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "festival-events_select".
+ */
+export interface FestivalEventsSelect<T extends boolean = true> {
+  title?: T;
+  slug?: T;
+  date?: T;
+  category?: T;
+  location?: T;
+  googleMapsUrl?: T;
+  price?: T;
+  featuredImage?: T;
+  isFeatured?: T;
+  promoUrl?: T;
+  description?: T;
+  updatedAt?: T;
+  createdAt?: T;
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
  * via the `definition` "promotions_select".
  */
 export interface PromotionsSelect<T extends boolean = true> {
@@ -666,6 +782,37 @@ export interface PromotionsSelect<T extends boolean = true> {
   verticalImageMobile?: T;
   ctaUrl?: T;
   ctaText?: T;
+  updatedAt?: T;
+  createdAt?: T;
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "hotels_select".
+ */
+export interface HotelsSelect<T extends boolean = true> {
+  name?: T;
+  description?: T;
+  featuredImage?: T;
+  location?: T;
+  googleMapsUrl?: T;
+  phone?: T;
+  bookingUrl?: T;
+  updatedAt?: T;
+  createdAt?: T;
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "restaurants_select".
+ */
+export interface RestaurantsSelect<T extends boolean = true> {
+  name?: T;
+  description?: T;
+  cuisineType?: T;
+  featuredImage?: T;
+  location?: T;
+  googleMapsUrl?: T;
+  phone?: T;
+  menuUrl?: T;
   updatedAt?: T;
   createdAt?: T;
 }

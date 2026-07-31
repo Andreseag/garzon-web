@@ -2,6 +2,7 @@ import type { CollectionConfig } from 'payload'
 
 export const Promotions: CollectionConfig = {
   slug: 'promotions',
+  labels: { singular: 'Promocional', plural: 'Promocionales' },
   admin: {
     useAsTitle: 'title',
   },
