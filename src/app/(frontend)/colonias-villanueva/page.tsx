@@ -1,9 +1,10 @@
 import { getPayload } from 'payload'
 import configPromise from '@payload-config'
 import { FeaturedCarousel } from '../components/FeaturedCarousel/FeaturedCarousel'
-import { Hero } from '../components/Hero/Hero'
 import ColoniasContent from '../components/ColoniasContent/ColoniasContent'
 import TurismoServer from '../components/TurismoServer/TurismoServer'
+
+export const dynamic = 'force-dynamic'
 
 export default async function ColoniasPage() {
   const payload = await getPayload({ config: configPromise })
