@@ -13,7 +13,10 @@ export default async function ColoniasPage() {
   const { docs: allEvents } = await payload.find({
     collection: 'festival-events',
     sort: 'date',
+    limit: 1000,
   })
+
+  console.log('allEvents', allEvents.length) // Para depuración, puedes eliminarlo después
 
   // Extraemos fechas únicas para los tabs
   const uniqueDates = Array.from(

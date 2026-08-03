@@ -1,4 +1,11 @@
-import { MapPin, Calendar, CalendarPlus, Share2, Navigation } from 'lucide-react'
+import {
+  MapPin,
+  Calendar,
+  CalendarPlus,
+  Share2,
+  Navigation,
+  Image as ImageIcon,
+} from 'lucide-react'
 import Image from 'next/image'
 import { Media } from '@/payload-types'
 
@@ -8,6 +15,12 @@ interface EventCardProps {
 
 export const EventCard = ({ event }: EventCardProps) => {
   const featuredImage = event.featuredImage as Media
+
+  // Validamos si realmente existe una URL de imagen utilizable
+  const imageUrl =
+    featuredImage?.cloudinary?.secure_url ||
+    featuredImage?.url ||
+    (typeof event.featuredImage === 'string' ? event.featuredImage : null)
 
   // 1. Formateo para mostrar
   const displayDate = new Date(event.date).toLocaleDateString('es-ES', {
@@ -41,40 +54,58 @@ export const EventCard = ({ event }: EventCardProps) => {
   }
 
   return (
-    <div className="group bg-white dark:bg-slate-900 border border-slate-100 dark:border-slate-800 rounded-2xl overflow-hidden hover:shadow-xl transition-all duration-300">
-      <div className="relative aspect-video overflow-hidden">
-        <Image
-          src={featuredImage?.cloudinary?.secure_url || featuredImage?.url || '/placeholder.jpg'}
-          alt={event.title}
-          fill
-          className="object-cover group-hover:scale-105 transition-transform duration-500"
-        />
-        <div className="absolute top-4 left-4 bg-white/90 dark:bg-slate-950/90 backdrop-blur px-3 py-1 rounded-full text-xs font-bold uppercase tracking-wider text-[#2f86cc]">
+    <div className="group bg-white dark:bg-slate-900 border border-slate-100 dark:border-slate-800 rounded-2xl overflow-hidden hover:shadow-xl transition-all duration-300 flex flex-col h-full">
+      {/* Imagen fija */}
+      <div className="relative aspect-video overflow-hidden flex-shrink-0">
+        {imageUrl ? (
+          <Image
+            src={imageUrl}
+            alt={event.title}
+            fill
+            className="object-cover group-hover:scale-105 transition-transform duration-500"
+          />
+        ) : (
+          <div className="w-full h-full bg-gradient-to-br from-slate-900 via-slate-800 to-[#2f86cc]/40 flex flex-col items-center justify-center p-6 text-center">
+            <div className="p-3 bg-white/10 dark:bg-black/20 backdrop-blur-md rounded-2xl text-white mb-2 shadow-inner">
+              <ImageIcon
+                size={28}
+                className="text-[#2f86cc] group-hover:scale-110 transition-transform duration-300"
+              />
+            </div>
+            <span className="text-xs font-bold tracking-widest text-slate-300 uppercase">
+              Festival de Colonias
+            </span>
+          </div>
+        )}
+
+        <div className="absolute top-4 left-4 bg-white/90 dark:bg-slate-950/90 backdrop-blur px-3 py-1 rounded-full text-xs font-bold uppercase tracking-wider text-[#2f86cc] shadow-sm">
           {event.category}
         </div>
       </div>
 
-      <div className="p-5">
-        <h3 className="text-xl font-black text-slate-900 dark:text-white mb-2 leading-tight">
-          {event.title}
-        </h3>
+      {/* Cuerpo principal que se expande para alinear los botones abajo */}
+      <div className="p-5 flex flex-col flex-1 justify-between">
+        <div>
+          {/* Título completo sin restricciones de líneas */}
+          <h3 className="text-xl font-black text-slate-900 dark:text-white mb-2 leading-tight">
+            {event.title}
+          </h3>
 
-        <div className="space-y-2 text-sm text-slate-500 dark:text-slate-400 mb-6">
-          <div className="flex items-center gap-2">
-            <Calendar size={16} />
-            <span>{displayDate}</span>
-          </div>
-          <div className="flex items-center gap-2">
-            <MapPin size={16} />
-            <span>{event.location}</span>
+          <div className="space-y-2 text-sm text-slate-500 dark:text-slate-400 mb-6">
+            <div className="flex items-center gap-2">
+              <Calendar size={16} className="flex-shrink-0" />
+              <span>{displayDate}</span>
+            </div>
+            <div className="flex items-center gap-2">
+              <MapPin size={16} className="flex-shrink-0" />
+              <span className="line-clamp-1">{event.location}</span>
+            </div>
           </div>
         </div>
 
-        {/* Acciones Mejoradas */}
-        <div className="pt-4 border-t border-slate-100 dark:border-slate-800 flex flex-col gap-3">
-          {/* Botones secundarios con texto y mejor área táctil */}
+        {/* Acciones alineadas siempre al fondo */}
+        <div className="pt-4 border-t border-slate-100 dark:border-slate-800 flex flex-col gap-3 mt-auto">
           <div className="grid grid-cols-2 sm:flex sm:flex-wrap gap-2">
-            {/* Google Calendar */}
             <a
               href={getGoogleCalendarUrl()}
               target="_blank"
@@ -85,7 +116,6 @@ export const EventCard = ({ event }: EventCardProps) => {
               <span>Agendar</span>
             </a>
 
-            {/* Google Maps (Se muestra solo si existe la URL en el evento) */}
             {event.googleMapsUrl && (
               <a
                 href={event.googleMapsUrl}
@@ -98,7 +128,6 @@ export const EventCard = ({ event }: EventCardProps) => {
               </a>
             )}
 
-            {/* WhatsApp */}
             <a
               href={getWhatsAppShareUrl()}
               target="_blank"
@@ -110,7 +139,6 @@ export const EventCard = ({ event }: EventCardProps) => {
             </a>
           </div>
 
-          {/* Botón Principal de Tickets / Info (Ancho completo para máxima visibilidad) */}
           {event.promoUrl && (
             <a
               href={event.promoUrl}

@@ -16,6 +16,9 @@ export const GlobalVerticalPromoSlider = ({ promos }: GlobalVerticalPromoSliderP
     (p) => p.isActive && (p.verticalImageDesktop || p.verticalImageMobile),
   )
 
+  // order promos ramdomly
+  activePromos.sort(() => Math.random() - 0.5)
+
   useEffect(() => {
     if (activePromos.length <= 1) return
 
