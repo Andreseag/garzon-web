@@ -1,19 +1,20 @@
-import { COLUMNISTAS_DATA } from './data/columnistas'
-import FeaturedNewsGrid from './components/FeaturedNewsGrid/FeaturedNewsGrid'
-import ElectionGrid from './components/ElectionGrid/ElectionGrid'
-import VideoGrid from './components/VideoGrid/VideoGrid'
-import LatestNewsGrid from './components/LatestNewsGrid/LatestNewsGrid'
-import Footer from './components/Footer/Footer'
-import NewsCarousel from './components/NewsCarousel/NewsCarousel'
-import SpotifyPodcast from './components/SpotifyPodcast/SpotifyPodcast'
-import NewsShorts from './components/NewsShorts/NewsShorts'
+// import { COLUMNISTAS_DATA } from './data/columnistas'
+// import FeaturedNewsGrid from './components/FeaturedNewsGrid/FeaturedNewsGrid'
+// import ElectionGrid from './components/ElectionGrid/ElectionGrid'
+// import VideoGrid from './components/VideoGrid/VideoGrid'
+// import LatestNewsGrid from './components/LatestNewsGrid/LatestNewsGrid'
+// import Footer from './components/Footer/Footer'
+// import NewsCarousel from './components/NewsCarousel/NewsCarousel'
+// import SpotifyPodcast from './components/SpotifyPodcast/SpotifyPodcast'
+// import NewsShorts from './components/NewsShorts/NewsShorts'
 import FeaturedNewsServer from './components/FeaturedNewsServer/FeaturedNewsServer'
 import PoderPublicoServer from './components/PoderPublicoServer/PoderPublicoServer'
-import HoroscopeServer from './components/HoroscopeServer/HoroscopeServer'
+// import HoroscopeServer from './components/HoroscopeServer/HoroscopeServer'
 import ScienceTechServer from './components/ScienceTechServer/ScienceTechServer'
 import LensServer from './components/LensServer/LensServer'
 import OpinionGridServer from './components/OpinionGridServer/OpinionGridServer'
-import { DefaultModal } from './components/DefaultModal/DefaultModal'
+// import { DefaultModal } from './components/DefaultModal/DefaultModal'
+import { ColoniasBanner } from './components/ColoniasBanner/ColoniasBanner'
 
 export const dynamic = 'force-dynamic'
 
@@ -24,6 +25,9 @@ export default function Home() {
       {/* <DefaultModal /> */}
 
       <FeaturedNewsServer />
+
+      {/* Banner promocional del Festival de Colonias */}
+      <ColoniasBanner />
 
       <PoderPublicoServer />
 

@@ -78,7 +78,7 @@ export default async function RootLayout({
         <Providers>
           <div className="flex min-h-screen items-center justify-center bg-zinc-50 font-sans dark:bg-black">
             <main className="flex min-h-screen w-full max-w-7xl flex-col px-4 bg-white dark:bg-black sm:items-start">
-              {/* <DefaultModal /> */}
+              <DefaultModal />
 
               {/* SLIDER DE PUBLICIDAD: Ubicado en la parte superior absoluta, sobre el logo/header */}
               <GlobalPromoSlider promos={promos} />

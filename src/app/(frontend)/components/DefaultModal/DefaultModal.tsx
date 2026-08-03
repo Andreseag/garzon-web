@@ -27,38 +27,41 @@ export function DefaultModal() {
       maxWidth="lg" // Mantiene el modal compacto y estilizado para formato vertical
     >
       <div className="space-y-4 text-center py-1">
-        {/* Etiqueta promocional */}
-        <div className="inline-flex items-center gap-1.5 bg-[#2f86cc]/10 text-[#2f86cc] dark:bg-[#2f86cc]/20 px-3.5 py-1.5 rounded-full text-xs font-bold uppercase tracking-widest shadow-sm">
+        {/* Etiqueta promocional inspirada en el afiche */}
+        <div className="inline-flex items-center gap-1.5 bg-yellow-400 text-slate-950 px-3.5 py-1.5 rounded-full text-xs font-black uppercase tracking-widest shadow-sm">
           <Sparkles size={14} />
-          <span>¡Edición Especial!</span>
+          <span>36° Edición Oficial</span>
         </div>
 
         {/* Títulos y descripción */}
-        <div className="space-y-1">
-          <h2 className="text-2xl md:text-3xl font-black tracking-tight text-stone-900 dark:text-stone-100">
-            Festival de Colonias 2026
+        <div className="space-y-1.5">
+          <h2 className="text-2xl md:text-3xl font-black tracking-tight text-slate-950 uppercase">
+            Festival Nacional de Colonias
           </h2>
-          <p className="text-stone-600 dark:text-stone-300 text-sm max-w-sm mx-auto">
+          {/* <p className="text-amber-900 text-xs md:text-sm font-medium italic tracking-wide">
+            "¡La cultura une regiones, exprésala con orgullo!"
+          </p> */}
+          <p className="text-slate-600 dark:text-stone-300 text-sm max-w-sm mx-auto pt-1">
             Vive la tradición y descubre la programación oficial día por día.
           </p>
         </div>
 
         {/* Contenedor del Afiche Vertical (Proporción 3:4 con límite de altura) */}
-        <div className="relative w-full aspect-[3/4] max-h-[55vh] mx-auto rounded-2xl overflow-hidden shadow-xl border border-stone-200 dark:border-stone-800 bg-stone-900 flex items-center justify-center">
+        <div className="relative w-full aspect-[3/4] max-h-[50vh] mx-auto rounded-2xl overflow-hidden shadow-xl border border-amber-200 bg-amber-50 flex items-center justify-center">
           <Image
             src="/afiche-colonias.jpg" // Asegúrate de que tu imagen esté en public/images/afiche-colonias.jpg
             alt="Afiche oficial del Festival de Colonias"
             fill
-            className="object-cover" // Cambia a "object-contain" si prefieres que se vea el afiche completo sin recortes en los bordes
+            className="object-cover"
           />
         </div>
 
-        {/* Botones de llamada a la acción (CTA) */}
+        {/* Botones de llamada a la acción (CTA) con colores coordinados */}
         <div className="flex flex-col sm:flex-row items-center justify-center gap-3 pt-2">
           <Link
             href="/colonias-villanueva"
             onClick={() => setIsOpen(false)}
-            className="w-full sm:w-auto inline-flex items-center justify-center gap-2 px-6 py-3.5 bg-[#2f86cc] hover:bg-[#2f86cc]/90 text-white font-bold rounded-2xl shadow-lg shadow-[#2f86cc]/20 transition-all hover:scale-[1.02]"
+            className="w-full sm:w-auto inline-flex items-center justify-center gap-2 px-6 py-3.5 bg-slate-950 hover:bg-amber-700 text-white font-black text-sm uppercase tracking-wider rounded-2xl shadow-lg transition-all hover:scale-[1.02]"
           >
             <span>Ver programación</span>
             <ArrowRight size={18} />
@@ -66,7 +69,7 @@ export function DefaultModal() {
 
           <button
             onClick={() => setIsOpen(false)}
-            className="w-full sm:w-auto px-6 py-3 text-stone-600 hover:text-stone-900 dark:text-stone-400 dark:hover:text-stone-200 font-semibold transition-colors"
+            className="w-full sm:w-auto px-6 py-3 text-slate-600 hover:text-slate-950 dark:text-stone-400 dark:hover:text-stone-200 font-semibold transition-colors text-sm"
           >
             Cerrar
           </button>
