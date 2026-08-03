@@ -54,10 +54,11 @@ export function RichText({ content }: { content: any }) {
       }
 
       case 'text': {
-        // Manejo de formatos (1: Bold, 2: Italic, 4: Underline, etc)
+        // Manejo de formatos de Lexical (1: Bold, 2: Italic, 8: Underline, etc.)
         let text = <>{node.text}</>
-        if (node.format & 1) text = <p>{text}</p>
+        if (node.format & 1) text = <p className="">{text}</p> // Corregido a <strong>
         if (node.format & 2) text = <em className="italic">{text}</em>
+        if (node.format & 8) text = <span className="underline">{text}</span> // Opcional para subrayado
         return <span key={index}>{text}</span>
       }
 

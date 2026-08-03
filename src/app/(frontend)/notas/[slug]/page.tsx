@@ -2,8 +2,9 @@ import { getPayload } from 'payload'
 import configPromise from '@payload-config'
 import { notFound } from 'next/navigation'
 import Image from 'next/image'
-import { Media, News, Columnist } from '@/payload-types'
+import { Media, News, Columnist, Promotion } from '@/payload-types'
 import { RichText } from '../../components/RichText/RichText'
+import { GlobalPromoSlider } from '../../components/GlobalPromoSlider/GlobalPromoSlider'
 // import { NewsAudioPlayer } from '../../components/NewsAudioPlayer/NewsAudioPlayer'
 
 interface PageProps {
@@ -14,16 +15,27 @@ export default async function NewsDetailPage({ params }: PageProps) {
   const { slug } = await params
   const payload = await getPayload({ config: configPromise })
 
-  const { docs } = await payload.find({
-    collection: 'news',
-    where: {
-      slug: { equals: slug },
-    },
-    limit: 1,
-  })
+  // Consultar la noticia y las promociones activas en paralelo
+  const [{ docs }, promosRes] = await Promise.all([
+    payload.find({
+      collection: 'news',
+      where: {
+        slug: { equals: slug },
+      },
+      limit: 1,
+    }),
+    payload.find({
+      collection: 'promotions',
+      where: {
+        isActive: { equals: true },
+      },
+    }),
+  ])
 
   const news = docs[0] as News
   if (!news) return notFound()
+
+  const promos = promosRes.docs as Promotion[]
 
   const relatedNews = await payload.find({
     collection: 'news',
@@ -45,6 +57,30 @@ export default async function NewsDetailPage({ params }: PageProps) {
     month: 'long',
     year: 'numeric',
   })
+
+  // Dividir el contenido de Lexical (news.content) a la mitad
+  const contentRoot = (news.content as any)?.root
+  const children = contentRoot?.children || []
+  const middleIndex = Math.floor(children.length / 2)
+
+  const firstHalfChildren = children.slice(0, middleIndex)
+  const secondHalfChildren = children.slice(middleIndex)
+
+  const firstHalfContent =
+    firstHalfChildren.length > 0
+      ? {
+          ...news.content,
+          root: { ...contentRoot, children: firstHalfChildren },
+        }
+      : null
+
+  const secondHalfContent =
+    secondHalfChildren.length > 0
+      ? {
+          ...news.content,
+          root: { ...contentRoot, children: secondHalfChildren },
+        }
+      : news.content
 
   return (
     <>
@@ -105,11 +141,6 @@ export default async function NewsDetailPage({ params }: PageProps) {
               {formattedDate}
             </time>
           </div>
-
-          {/* REPRODUCTOR DE AUDIO DE LA NOTICIA */}
-          {/* <div className="max-w-xl mx-auto mt-6">
-          <NewsAudioPlayer title={news.title} excerpt={news.excerpt} contentJson={news.content} />
-        </div> */}
         </header>
 
         {/* IMAGEN DESTACADA */}
@@ -137,33 +168,19 @@ export default async function NewsDetailPage({ params }: PageProps) {
             prose-p:leading-relaxed prose-p:text-slate-700 dark:prose-p:text-slate-300
             prose-a:text-[#2f86cc] hover:prose-a:underline"
             >
-              {/* Renderizador de Lexical */}
-              <RichText content={news.content} />
-            </div>
+              {/* Primera mitad del contenido */}
+              {firstHalfContent && <RichText content={firstHalfContent} />}
 
-            {/* FIRMA AL FINAL */}
-            {/* <footer className="mt-16 pt-8 border-t border-slate-100 dark:border-slate-800">
-            <div className="bg-slate-50 dark:bg-slate-900 p-8 rounded-3xl flex flex-col md:flex-row gap-6 items-center text-center md:text-left">
-              {columnist?.image && (
-                <div className="relative w-24 h-24 rounded-2xl overflow-hidden shrink-0 shadow-lg">
-                  <Image
-                    src={(columnist.image as Media).thumbnailURL || ''}
-                    alt={columnist.name}
-                    fill
-                    className="object-cover"
-                  />
+              {/* Slider de Promociones insertado exactamente a la mitad */}
+              {promos.length > 0 && (
+                <div className="my-10 not-prose">
+                  <GlobalPromoSlider promos={promos} />
                 </div>
               )}
-              <div>
-                <h4 className="text-xl font-black text-slate-900 dark:text-white uppercase tracking-tighter">
-                  {columnist?.name || news.newAuthor}
-                </h4>
-                <p className="text-slate-600 dark:text-slate-400 mt-2 text-sm leading-relaxed">
-                  {columnist?.bio || 'Colaborador especializado en Garzón Web.'}
-                </p>
-              </div>
+
+              {/* Segunda mitad del contenido */}
+              <RichText content={secondHalfContent} />
             </div>
-          </footer> */}
           </div>
         </div>
 
