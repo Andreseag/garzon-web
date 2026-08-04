@@ -27,7 +27,7 @@ export const DateTabs = ({ availableDates, selectedDay, onSelectDay }: DateTabsP
             onClick={() => onSelectDay(dateStr)}
             className={`px-6 py-3 rounded-full font-bold text-sm transition-all duration-300 capitalize cursor-pointer whitespace-nowrap flex-shrink-0 ${
               isSelected
-                ? 'bg-[#2f86cc] text-white shadow-lg shadow-[#2f86cc]/30 scale-105'
+                ? 'bg-primary text-white shadow-lg shadow-primary/30 scale-105'
                 : 'bg-slate-900 border border-slate-800 text-slate-400 hover:text-white hover:border-slate-700'
             }`}
           >

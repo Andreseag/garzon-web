@@ -87,7 +87,7 @@ export default async function NewsDetailPage({ params }: PageProps) {
       <article className="min-h-screen w-full bg-white dark:bg-slate-950 pb-20">
         {/* HEADER DE LA NOTICIA */}
         <header className="max-w-4xl mx-auto px-4 pt-6 md:pt-20 text-center">
-          <div className="inline-block px-3 py-1 mb-4 text-[10px] font-black uppercase tracking-[0.2em] bg-[#2f86cc]/10 text-[#2f86cc] rounded-full">
+          <div className="inline-block px-3 py-1 mb-4 text-[10px] font-black uppercase tracking-[0.2em] bg-primary/10 text-primary rounded-full">
             {news.category?.replace('-', ' ') ||
               (news.format === 'person' && 'Persona de la semana')}
           </div>
@@ -97,7 +97,7 @@ export default async function NewsDetailPage({ params }: PageProps) {
           </h1>
 
           <p className="text-lg md:text-2xl text-slate-500 dark:text-slate-400 font-sans italic leading-relaxed mb-6 max-w-3xl mx-auto">
-            "{news.excerpt}"
+            &quot;{news.excerpt}&quot;
           </p>
 
           {/* METADATOS */}
@@ -166,7 +166,7 @@ export default async function NewsDetailPage({ params }: PageProps) {
               className="prose prose-lg prose-slate dark:prose-invert max-w-none 
             prose-headings:font-black prose-headings:tracking-tighter prose-headings:uppercase 
             prose-p:leading-relaxed prose-p:text-slate-700 dark:prose-p:text-slate-300
-            prose-a:text-[#2f86cc] hover:prose-a:underline"
+            prose-a:text-primary hover:prose-a:underline"
             >
               {/* Primera mitad del contenido */}
               {firstHalfContent && <RichText content={firstHalfContent} />}
@@ -204,7 +204,7 @@ export default async function NewsDetailPage({ params }: PageProps) {
                         className="object-cover transition-transform duration-500 group-hover:scale-105"
                       />
                     </div>
-                    <h4 className="text-lg font-bold text-slate-900 dark:text-white leading-tight group-hover:text-[#2f86cc] transition-colors">
+                    <h4 className="text-lg font-bold text-slate-900 dark:text-white leading-tight group-hover:text-primary transition-colors">
                       {related.title}
                     </h4>
                   </a>

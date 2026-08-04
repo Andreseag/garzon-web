@@ -48,7 +48,7 @@ export default async function TurismoServer() {
             <div className="flex-shrink-0 w-[280px]">
               <div className="bg-white dark:bg-slate-900 border border-slate-100 dark:border-slate-800 rounded-2xl overflow-hidden shadow-sm flex flex-col h-full p-6 justify-between text-center">
                 <div className="space-y-3">
-                  <div className="w-12 h-12 mx-auto bg-[#2f86cc]/10 rounded-full flex items-center justify-center text-[#2f86cc]">
+                  <div className="w-12 h-12 mx-auto bg-primary/10 rounded-full flex items-center justify-center text-primary">
                     <Utensils size={24} />
                   </div>
                   <h3 className="text-lg font-bold text-slate-900 dark:text-white">
@@ -89,7 +89,7 @@ export default async function TurismoServer() {
             <div className="flex-shrink-0 w-[280px]">
               <div className="bg-white dark:bg-slate-900 border border-slate-100 dark:border-slate-800 rounded-2xl overflow-hidden shadow-sm flex flex-col h-full p-6 justify-between text-center">
                 <div className="space-y-3">
-                  <div className="w-12 h-12 mx-auto bg-[#2f86cc]/10 rounded-full flex items-center justify-center text-[#2f86cc]">
+                  <div className="w-12 h-12 mx-auto bg-primary/10 rounded-full flex items-center justify-center text-primary">
                     <Building2 size={24} />
                   </div>
                   <h3 className="text-lg font-bold text-slate-900 dark:text-white">

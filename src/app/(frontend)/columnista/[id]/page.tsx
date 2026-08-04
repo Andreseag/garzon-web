@@ -34,7 +34,7 @@ export default async function ColumnistDetailPage({ params }: PageProps) {
   return (
     <main className="min-h-screen bg-white dark:bg-slate-950">
       {/* SECCIÓN DE PERFIL (Encabezado Azul) */}
-      <section className="bg-gradient-to-br from-[#2f86cc] to-[#1e5a8a] py-20 px-4">
+      <section className="bg-gradient-to-br from-primary to-[#1e5a8a] py-20 px-4">
         <div className="max-w-5xl mx-auto flex flex-col md:flex-row items-center gap-10">
           <div className="relative w-48 h-48 md:w-64 md:h-64 rounded-3xl overflow-hidden border-4 border-white/20 shadow-2xl shrink-0">
             <Image
@@ -86,13 +86,13 @@ export default async function ColumnistDetailPage({ params }: PageProps) {
                       className="object-cover transition-transform duration-700 group-hover:scale-110"
                     />
                   </div>
-                  <h3 className="text-xl font-sans font-black leading-tight text-slate-900 dark:text-white group-hover:text-[#2f86cc] transition-colors">
+                  <h3 className="text-xl font-sans font-black leading-tight text-slate-900 dark:text-white group-hover:text-primary transition-colors">
                     {item.title}
                   </h3>
                   <p className="mt-3 text-sm text-slate-500 dark:text-slate-400 line-clamp-2 italic">
                     {item.excerpt}
                   </p>
-                  <div className="mt-4 flex items-center text-[10px] font-bold text-[#2f86cc] uppercase tracking-widest">
+                  <div className="mt-4 flex items-center text-[10px] font-bold text-primary uppercase tracking-widest">
                     Leer columna{' '}
                     <span className="ml-2 group-hover:translate-x-2 transition-transform">→</span>
                   </div>

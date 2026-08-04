@@ -1,7 +1,7 @@
 import { getPayload } from 'payload'
 import config from '@/payload.config'
 import FeaturedNewsGrid from '../FeaturedNewsGrid/FeaturedNewsGrid'
-import { Category, CategoryLabels } from '@/constants/categories' // Importa lo anterior
+import { CategoryLabels } from '@/constants/categories' // Importa lo anterior
 
 export default async function FeaturedNewsServer() {
   const payload = await getPayload({ config })

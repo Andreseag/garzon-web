@@ -63,9 +63,9 @@ export const FeaturedCarousel = ({ events }: { events: any[] }) => {
                   <Image src={imageUrl} alt={event.title} fill className="object-cover" />
                 ) : (
                   /* Fallback elegante cuando no hay imagen en el carrusel */
-                  <div className="absolute inset-0 bg-gradient-to-br from-slate-950 via-slate-900 to-[#2f86cc]/50 flex flex-col items-center justify-center">
+                  <div className="absolute inset-0 bg-gradient-to-br from-slate-950 via-slate-900 to-primary/50 flex flex-col items-center justify-center">
                     <div className="p-4 bg-white/10 backdrop-blur-md rounded-2xl text-white mb-3 shadow-inner">
-                      <ImageIcon size={36} className="text-[#2f86cc]" />
+                      <ImageIcon size={36} className="text-primary" />
                     </div>
                     <span className="text-xs font-bold tracking-widest text-slate-400 uppercase">
                       Festival de Colonias
@@ -76,7 +76,7 @@ export const FeaturedCarousel = ({ events }: { events: any[] }) => {
                 {/* Gradiente inmersivo estilo Hero */}
                 <div className="absolute inset-0 bg-gradient-to-t from-black/90 via-black/40 to-transparent flex flex-col justify-end p-6 md:p-10">
                   <div className="max-w-3xl space-y-3">
-                    <span className="bg-[#2f86cc] text-white font-bold text-xs uppercase tracking-widest px-3 py-1 rounded-full inline-block shadow-sm">
+                    <span className="bg-primary text-white font-bold text-xs uppercase tracking-widest px-3 py-1 rounded-full inline-block shadow-sm">
                       {event.category}
                     </span>
 
@@ -87,13 +87,13 @@ export const FeaturedCarousel = ({ events }: { events: any[] }) => {
                     <div className="flex flex-wrap items-center gap-4 text-slate-200 text-sm pt-1">
                       {event.date && (
                         <div className="flex items-center gap-1.5">
-                          <Calendar size={16} className="text-[#2f86cc]" />
+                          <Calendar size={16} className="text-primary" />
                           <span>{displayDate}</span>
                         </div>
                       )}
                       {event.location && (
                         <div className="flex items-center gap-1.5">
-                          <MapPin size={16} className="text-[#2f86cc]" />
+                          <MapPin size={16} className="text-primary" />
                           <span>{event.location}</span>
                         </div>
                       )}
@@ -128,7 +128,7 @@ export const FeaturedCarousel = ({ events }: { events: any[] }) => {
               key={index}
               onClick={() => setCurrentIndex(index)}
               className={`h-2 rounded-full transition-all duration-300 cursor-pointer ${
-                currentIndex === index ? 'w-8 bg-[#2f86cc]' : 'w-2 bg-white/50 hover:bg-white'
+                currentIndex === index ? 'w-8 bg-primary' : 'w-2 bg-white/50 hover:bg-white'
               }`}
               aria-label={`Ir al evento ${index + 1}`}
             />

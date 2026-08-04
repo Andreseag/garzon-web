@@ -63,10 +63,10 @@ export default function TrendsBar({ topics = DEFAULT_TRENDS }: TrendsBarProps) {
       <div className="max-w-7xl mx-auto flex items-center justify-between h-full px-4">
         {/* LADO IZQUIERDO: Tendencias */}
         <div className="flex items-center overflow-x-auto no-scrollbar py-1">
-          <span className="flex items-center text-[10px] font-sans font-black uppercase tracking-widest text-[#2f86cc] mr-6 whitespace-nowrap">
+          <span className="flex items-center text-[10px] font-sans font-black uppercase tracking-widest text-primary mr-6 whitespace-nowrap">
             <span className="relative flex h-2 w-2 mr-2">
-              <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-[#2f86cc] opacity-75"></span>
-              <span className="relative inline-flex rounded-full h-2 w-2 bg-[#2f86cc]"></span>
+              <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-primary opacity-75"></span>
+              <span className="relative inline-flex rounded-full h-2 w-2 bg-primary"></span>
             </span>
             Tendencias
           </span>
@@ -76,7 +76,7 @@ export default function TrendsBar({ topics = DEFAULT_TRENDS }: TrendsBarProps) {
               <li key={topic.id} className="whitespace-nowrap">
                 <Link
                   href={`/categoria/${topic.slug}`}
-                  className="text-xs font-sans font-bold text-gray-700 transition-colors duration-200 hover:text-[#2f86cc] dark:text-slate-400 dark:hover:text-[#2f86cc]"
+                  className="text-xs font-sans font-bold text-gray-700 transition-colors duration-200 hover:text-primary dark:text-slate-400 dark:hover:text-primary"
                 >
                   #{topic.label}
                 </Link>
@@ -90,7 +90,7 @@ export default function TrendsBar({ topics = DEFAULT_TRENDS }: TrendsBarProps) {
           {mounted && (
             <button
               onClick={() => setTheme(theme === "dark" ? "light" : "dark")}
-              className="flex items-center justify-center p-1.5 rounded-lg bg-slate-50 dark:bg-slate-900 text-slate-500 dark:text-slate-400 hover:text-[#2f86cc] dark:hover:text-[#2f86cc] transition-all"
+              className="flex items-center justify-center p-1.5 rounded-lg bg-slate-50 dark:bg-slate-900 text-slate-500 dark:text-slate-400 hover:text-primary dark:hover:text-primary transition-all"
               aria-label="Cambiar modo de color">
               {theme === "dark" ? (
                 <Sun size={14} strokeWidth={2.5} />

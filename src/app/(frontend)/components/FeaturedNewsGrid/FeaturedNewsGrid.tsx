@@ -41,7 +41,7 @@ export default function FeaturedNewsGrid({ posts }: NewsGridProps) {
             <div className="absolute inset-0 bg-linear-to-t from-slate-950 via-slate-900/20 to-transparent" />
 
             <div className="absolute bottom-0 p-6">
-              <span className="mb-3 inline-block bg-[#2f86cc] px-2 py-0.5 text-[10px] font-sans font-black uppercase text-white rounded-sm tracking-widest">
+              <span className="mb-3 inline-block bg-primary px-2 py-0.5 text-[10px] font-sans font-black uppercase text-white rounded-sm tracking-widest">
                 {mainPost.category || (mainPost.format === 'person' && 'Persona de la semana')}
               </span>
               <h2 className="text-xl md:text-2xl font-serif font-bold leading-tight text-white group-hover:text-blue-100 transition-colors">
@@ -76,10 +76,10 @@ export default function FeaturedNewsGrid({ posts }: NewsGridProps) {
               </div>
 
               <div className="flex flex-col justify-center">
-                <span className="text-[9px] font-sans font-black uppercase text-[#2f86cc] tracking-[0.15em] mb-1">
+                <span className="text-[9px] font-sans font-black uppercase text-primary tracking-[0.15em] mb-1">
                   {post.category || (mainPost.format === 'person' && 'Persona de la semana')}
                 </span>
-                <h3 className="text-sm md:text-[15px] font-serif font-bold leading-snug text-slate-900 dark:text-slate-100 group-hover:text-[#2f86cc] dark:group-hover:text-[#2f86cc] transition-colors line-clamp-2">
+                <h3 className="text-sm md:text-[15px] font-serif font-bold leading-snug text-slate-900 dark:text-slate-100 group-hover:text-primary transition-colors line-clamp-2">
                   {post.title}
                 </h3>
               </div>

@@ -40,7 +40,7 @@ export default async function CategoryPage({ params }: PageProps) {
         </h1>
         <Link
           href="/"
-          className="mt-8 inline-block text-[#2f86cc] font-bold uppercase tracking-widest text-sm border-b-2 border-[#2f86cc]"
+          className="mt-8 inline-block text-primary font-bold uppercase tracking-widest text-sm border-b-2 border-primary"
         >
           Volver al inicio
         </Link>
@@ -55,7 +55,7 @@ export default async function CategoryPage({ params }: PageProps) {
       {/* CABECERA DE CATEGORÍA */}
       <header className="mb-16 border-b-4 border-slate-900 dark:border-white pb-6 flex justify-between items-end">
         <div>
-          <p className="text-[#2f86cc] font-sans font-black uppercase tracking-[0.3em] text-xs mb-2">
+          <p className="text-primary font-sans font-black uppercase tracking-[0.3em] text-xs mb-2">
             Explorando sección
           </p>
           <h1 className="text-5xl md:text-7xl font-sans font-black uppercase tracking-tighter text-slate-900 dark:text-white italic">
@@ -96,13 +96,13 @@ export default async function CategoryPage({ params }: PageProps) {
 
               {/* Info de la Nota */}
               <div className="flex items-center gap-3 mb-3">
-                <span className="text-[10px] font-black uppercase tracking-widest text-[#2f86cc]">
+                <span className="text-[10px] font-black uppercase tracking-widest text-primary">
                   {date}
                 </span>
                 <span className="h-px w-8 bg-slate-200 dark:border-slate-800"></span>
               </div>
 
-              <h2 className="text-2xl font-sans font-black leading-[1.1] text-slate-900 dark:text-white group-hover:text-[#2f86cc] transition-colors mb-4">
+              <h2 className="text-2xl font-sans font-black leading-[1.1] text-slate-900 dark:text-white group-hover:text-primary transition-colors mb-4">
                 {item.title}
               </h2>
 

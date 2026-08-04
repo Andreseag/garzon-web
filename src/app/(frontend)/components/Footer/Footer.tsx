@@ -23,7 +23,11 @@ export default function Footer() {
 
   // Definimos las redes con sus respectivos componentes de icono
   const socialLinks = [
-    { name: 'Facebook', href: '#', icon: <Facebook size={18} /> },
+    {
+      name: 'Facebook',
+      href: 'https://www.facebook.com/profile.php?id=61572474759188&locale=es_LA',
+      icon: <Facebook size={18} />,
+    },
     { name: 'X', href: '#', icon: <Twitter size={18} /> },
     { name: 'Instagram', href: '#', icon: <Instagram size={18} /> },
     { name: 'YouTube', href: '#', icon: <Youtube size={18} /> },
@@ -44,7 +48,7 @@ export default function Footer() {
                 key={social.name}
                 href={social.href}
                 aria-label={social.name}
-                className="p-2 rounded-full bg-slate-50 dark:bg-slate-900 text-slate-400 hover:text-[#2f86cc] hover:bg-blue-50 dark:hover:bg-slate-800 transition-all duration-300"
+                className="p-2 rounded-full bg-slate-50 dark:bg-slate-900 text-slate-400 hover:text-primary hover:bg-blue-50 dark:hover:bg-slate-800 transition-all duration-300"
               >
                 {social.icon}
               </Link>
@@ -55,7 +59,7 @@ export default function Footer() {
         {/* PARTE MEDIA: Links de Navegación */}
         <div className="grid grid-cols-2 md:grid-cols-4 lg:grid-cols-6 gap-10 mb-16">
           <div className="col-span-2">
-            <h4 className="font-sans font-black uppercase text-[10px] tracking-[0.2em] text-[#2f86cc] mb-6">
+            <h4 className="font-sans font-black uppercase text-[10px] tracking-[0.2em] text-primary mb-6">
               Sobre Garzón
             </h4>
             <p className="font-sans text-sm text-slate-600 dark:text-slate-400 leading-relaxed pr-8">
@@ -73,7 +77,7 @@ export default function Footer() {
                 <li key={cat.name}>
                   <Link
                     href={cat.href}
-                    className="font-sans text-xs text-slate-500 dark:text-slate-400 hover:text-[#2f86cc] transition-colors"
+                    className="font-sans text-xs text-slate-500 dark:text-slate-400 hover:text-primary transition-colors"
                   >
                     {cat.name}
                   </Link>
@@ -91,7 +95,7 @@ export default function Footer() {
                 <li key={item.name}>
                   <Link
                     href={item.href}
-                    className="font-sans text-xs text-slate-500 dark:text-slate-400 hover:text-[#2f86cc] transition-colors"
+                    className="font-sans text-xs text-slate-500 dark:text-slate-400 hover:text-primary transition-colors"
                   >
                     {item.name}
                   </Link>

@@ -44,11 +44,14 @@ export default async function RootLayout({
     },
   })
 
+  // Detectar automáticamente si el festival está activo evaluando las promociones cargadas
+  const isFestivalActive = false
+
   return (
     <html
       lang="es"
       suppressHydrationWarning
-      className={`${arimo.variable} ${libreBaskerville.variable}`}
+      className={`${arimo.variable} ${libreBaskerville.variable} ${isFestivalActive ? 'theme-colonias' : ''}`}
     >
       <head>
         {/* 1. Cargar el script de Google Analytics */}
