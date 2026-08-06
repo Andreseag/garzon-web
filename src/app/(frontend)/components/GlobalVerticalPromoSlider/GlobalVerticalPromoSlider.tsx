@@ -1,6 +1,6 @@
 'use client'
 
-import { useState, useEffect } from 'react'
+import { useState, useEffect, useMemo } from 'react'
 import Image from 'next/image'
 import { Media } from '@/payload-types'
 
@@ -11,13 +11,13 @@ interface GlobalVerticalPromoSliderProps {
 export const GlobalVerticalPromoSlider = ({ promos }: GlobalVerticalPromoSliderProps) => {
   const [currentIndex, setCurrentIndex] = useState(0)
 
-  // Filtrar solo las activas que tengan al menos una imagen vertical configurada
-  const activePromos = promos.filter(
-    (p) => p.isActive && (p.verticalImageDesktop || p.verticalImageMobile),
-  )
-
-  // order promos ramdomly
-  activePromos.sort(() => Math.random() - 0.5)
+  // 1. Memorizamos el filtrado y orden aleatorio de forma segura (sin mutar props directamente)
+  const activePromos = useMemo(() => {
+    const filtered = promos.filter(
+      (p) => p.isActive && (p.verticalImageDesktop || p.verticalImageMobile),
+    )
+    return [...filtered].sort(() => Math.random() - 0.5)
+  }, [promos])
 
   useEffect(() => {
     if (activePromos.length <= 1) return
@@ -31,30 +31,28 @@ export const GlobalVerticalPromoSlider = ({ promos }: GlobalVerticalPromoSliderP
 
   if (activePromos.length === 0) return null
 
-  const currentPromo = activePromos[currentIndex]
-
-  const content = (
+  return (
     <div className="relative w-full bg-slate-950 text-white overflow-hidden shadow-lg border border-blue-900/30 rounded-xl">
       {/* Contenedor vertical con proporción fija ideal para banners laterales */}
       <div className="relative h-[138px] lg:h-[500px] w-full flex items-center justify-center overflow-hidden bg-slate-950">
-        {activePromos.reverse().map((promo, idx) => {
+        {activePromos.map((promo, idx) => {
           const dImg = promo.verticalImageDesktop as Media
           const dUrl = dImg?.cloudinary?.secure_url || dImg?.url || ''
 
-          // Toma la imagen horizontal desktop
+          // Corrección del tipeo (antes decía dImg?.url por error)
           const hImg = promo.horizontalImageDesktop as Media
-          const hUrl = hImg?.cloudinary?.secure_url || dImg?.url || ''
+          const hUrl = hImg?.cloudinary?.secure_url || hImg?.url || ''
 
           const mImg = promo.horizontalImageMobile as Media
           const mUrl = mImg?.cloudinary?.secure_url || mImg?.url || ''
 
-          return (
+          const isVisible = idx === currentIndex
+
+          // Contenido visual de la promo vertical
+          const slideContent = (
             <div
-              key={promo.id}
               className={`absolute inset-0 transition-opacity duration-700 flex items-center justify-center ${
-                idx === currentIndex
-                  ? 'opacity-100 pointer-events-auto'
-                  : 'opacity-0 pointer-events-none'
+                isVisible ? 'opacity-100 pointer-events-auto' : 'opacity-0 pointer-events-none'
               }`}
             >
               {/* Versión Desktop */}
@@ -70,7 +68,7 @@ export const GlobalVerticalPromoSlider = ({ promos }: GlobalVerticalPromoSliderP
                 </div>
               )}
 
-              {/* Version Tablet */}
+              {/* Versión Tablet */}
               {hUrl && (
                 <div className="hidden md:block lg:hidden relative w-full h-full">
                   <Image
@@ -102,23 +100,29 @@ export const GlobalVerticalPromoSlider = ({ promos }: GlobalVerticalPromoSliderP
               </span>
             </div>
           )
+
+          // Enlace individual atado estrictamente a esta promo
+          if (promo.ctaUrl) {
+            return (
+              <a
+                key={promo.id}
+                href={promo.ctaUrl}
+                target="_blank"
+                rel="noopener noreferrer"
+                className={`absolute inset-0 z-20 ${isVisible ? 'pointer-events-auto' : 'pointer-events-none'}`}
+              >
+                {slideContent}
+              </a>
+            )
+          }
+
+          return (
+            <div key={promo.id} className="absolute inset-0">
+              {slideContent}
+            </div>
+          )
         })}
       </div>
     </div>
   )
-
-  if (currentPromo.ctaUrl) {
-    return (
-      <a
-        href={currentPromo.ctaUrl}
-        target="_blank"
-        rel="noopener noreferrer"
-        className="block w-full group cursor-pointer"
-      >
-        {content}
-      </a>
-    )
-  }
-
-  return content
 }
