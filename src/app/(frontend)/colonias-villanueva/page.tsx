@@ -3,11 +3,20 @@ import configPromise from '@payload-config'
 import { FeaturedCarousel } from '../components/FeaturedCarousel/FeaturedCarousel'
 import ColoniasContent from '../components/ColoniasContent/ColoniasContent'
 import TurismoServer from '../components/TurismoServer/TurismoServer'
+import { GlobalPromoSlider } from '../components/GlobalPromoSlider/GlobalPromoSlider'
 
 export const dynamic = 'force-dynamic'
 
 export default async function ColoniasPage() {
   const payload = await getPayload({ config: configPromise })
+
+  // Consultar las promociones activas desde la base de datos
+  const { docs: promos } = await payload.find({
+    collection: 'promotions',
+    where: {
+      isActive: { equals: true },
+    },
+  })
 
   // Traemos todos los eventos ordenados por fecha una sola vez
   const { docs: allEvents } = await payload.find({
@@ -40,6 +49,9 @@ export default async function ColoniasPage() {
 
       {/* Contenedor cliente que maneja el estado de los tabs y el filtrado */}
       <ColoniasContent allEvents={allEvents} uniqueDates={uniqueDates}>
+        {/* SLIDER DE PUBLICIDAD */}
+        <GlobalPromoSlider promos={promos} />
+
         {/* TurismoServer se ejecuta en el servidor y entra como hijo sin romper nada */}
         <TurismoServer />
       </ColoniasContent>
