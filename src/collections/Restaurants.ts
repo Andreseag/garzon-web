@@ -53,5 +53,15 @@ export const Restaurants: CollectionConfig = {
       type: 'text',
       label: 'Enlace al Menú o Redes Sociales',
     },
+    {
+      name: 'isActive',
+      label: '¿Está activo?',
+      type: 'checkbox',
+      defaultValue: true,
+      admin: {
+        position: 'sidebar',
+      },
+      index: true,
+    },
   ],
 }

@@ -79,6 +79,7 @@ export interface Config {
     promotions: Promotion;
     hotels: Hotel;
     restaurants: Restaurant;
+    bars: Bar;
     'payload-kv': PayloadKv;
     'payload-locked-documents': PayloadLockedDocument;
     'payload-preferences': PayloadPreference;
@@ -98,6 +99,7 @@ export interface Config {
     promotions: PromotionsSelect<false> | PromotionsSelect<true>;
     hotels: HotelsSelect<false> | HotelsSelect<true>;
     restaurants: RestaurantsSelect<false> | RestaurantsSelect<true>;
+    bars: BarsSelect<false> | BarsSelect<true>;
     'payload-kv': PayloadKvSelect<false> | PayloadKvSelect<true>;
     'payload-locked-documents': PayloadLockedDocumentsSelect<false> | PayloadLockedDocumentsSelect<true>;
     'payload-preferences': PayloadPreferencesSelect<false> | PayloadPreferencesSelect<true>;
@@ -474,6 +476,7 @@ export interface Hotel {
   googleMapsUrl?: string | null;
   phone?: string | null;
   bookingUrl?: string | null;
+  isActive?: boolean | null;
   updatedAt: string;
   createdAt: string;
 }
@@ -491,6 +494,27 @@ export interface Restaurant {
   googleMapsUrl?: string | null;
   phone?: string | null;
   menuUrl?: string | null;
+  isActive?: boolean | null;
+  updatedAt: string;
+  createdAt: string;
+}
+/**
+ * Colección para listar bares, gastrobares y discotecas.
+ *
+ * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "bars".
+ */
+export interface Bar {
+  id: number;
+  name: string;
+  description?: string | null;
+  barType: 'traditional_bar' | 'gastrobar' | 'nightclub' | 'brewery' | 'other';
+  location: string;
+  phone?: string | null;
+  featuredImage: number | Media;
+  googleMapsUrl?: string | null;
+  menuUrl?: string | null;
+  isActive?: boolean | null;
   updatedAt: string;
   createdAt: string;
 }
@@ -565,6 +589,10 @@ export interface PayloadLockedDocument {
     | ({
         relationTo: 'restaurants';
         value: number | Restaurant;
+      } | null)
+    | ({
+        relationTo: 'bars';
+        value: number | Bar;
       } | null);
   globalSlug?: string | null;
   user: {
@@ -797,6 +825,7 @@ export interface HotelsSelect<T extends boolean = true> {
   googleMapsUrl?: T;
   phone?: T;
   bookingUrl?: T;
+  isActive?: T;
   updatedAt?: T;
   createdAt?: T;
 }
@@ -813,6 +842,24 @@ export interface RestaurantsSelect<T extends boolean = true> {
   googleMapsUrl?: T;
   phone?: T;
   menuUrl?: T;
+  isActive?: T;
+  updatedAt?: T;
+  createdAt?: T;
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "bars_select".
+ */
+export interface BarsSelect<T extends boolean = true> {
+  name?: T;
+  description?: T;
+  barType?: T;
+  location?: T;
+  phone?: T;
+  featuredImage?: T;
+  googleMapsUrl?: T;
+  menuUrl?: T;
+  isActive?: T;
   updatedAt?: T;
   createdAt?: T;
 }

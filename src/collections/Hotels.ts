@@ -48,5 +48,15 @@ export const Hotels: CollectionConfig = {
       type: 'text',
       label: 'Enlace de Reserva o Sitio Web',
     },
+    {
+      name: 'isActive',
+      label: '¿Está activo?',
+      type: 'checkbox',
+      defaultValue: true,
+      admin: {
+        position: 'sidebar',
+      },
+      index: true,
+    },
   ],
 }

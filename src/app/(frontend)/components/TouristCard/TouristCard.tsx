@@ -1,3 +1,5 @@
+'use client'
+
 import {
   MapPin,
   Phone,
@@ -23,7 +25,6 @@ export const TouristCard = ({ item, type }: TouristCardProps) => {
     if (!item.phone) return '#'
     const cleanPhone = item.phone.replace(/\D/g, '')
 
-    // Mensaje personalizado según el tipo de establecimiento
     const message =
       type === 'restaurant'
         ? `Hola ${item.name}, me gustaría ver el menú o hacer un pedido.`
@@ -34,8 +35,9 @@ export const TouristCard = ({ item, type }: TouristCardProps) => {
   }
 
   return (
-    <div className="group bg-white dark:bg-slate-900 border border-slate-100 dark:border-slate-800 rounded-2xl overflow-hidden hover:shadow-xl transition-all duration-300 flex flex-col justify-between">
-      <div>
+    <div className="group h-full flex flex-col bg-white dark:bg-slate-900 border border-slate-100 dark:border-slate-800 rounded-2xl overflow-hidden hover:shadow-xl transition-all duration-300">
+      {/* Contenedor de contenido: Flex-1 hace que ocupe todo el espacio disponible, empujando los botones al fondo */}
+      <div className="flex-1">
         <div className="relative aspect-video overflow-hidden">
           <Image
             src={imageUrl}
@@ -43,7 +45,7 @@ export const TouristCard = ({ item, type }: TouristCardProps) => {
             fill
             className="object-cover group-hover:scale-105 transition-transform duration-500"
           />
-          <div className="absolute top-4 left-4 bg-white/90 dark:bg-slate-950/90 backdrop-blur px-3 py-1 rounded-full text-xs font-bold uppercase tracking-wider text-[#2f86cc] flex items-center gap-1.5">
+          <div className="absolute top-4 left-4 bg-white/90 dark:bg-slate-950/90 backdrop-blur px-3 py-1 rounded-full text-xs font-bold uppercase tracking-wider text-[#2f86cc] flex items-center gap-1.5 shadow-sm">
             {type === 'restaurant' ? <Utensils size={14} /> : <BedDouble size={14} />}
             <span>{type === 'restaurant' ? item.cuisineType || 'Restaurante' : 'Alojamiento'}</span>
           </div>
@@ -53,10 +55,6 @@ export const TouristCard = ({ item, type }: TouristCardProps) => {
           <h3 className="text-xl font-black text-slate-900 dark:text-white mb-2 leading-tight">
             {item.name}
           </h3>
-
-          {/* <p className="text-sm text-slate-500 dark:text-slate-400 line-clamp-2 mb-4">
-            {item.description}
-          </p> */}
 
           <div className="space-y-2 text-sm text-slate-500 dark:text-slate-400">
             <div className="flex items-center gap-2">
@@ -73,10 +71,9 @@ export const TouristCard = ({ item, type }: TouristCardProps) => {
         </div>
       </div>
 
-      {/* Botones de Acción */}
-      <div className="p-5 pt-0">
+      {/* Botones de Acción: Siempre quedarán alineados al fondo gracias al flex-1 superior */}
+      <div className="p-5 pt-0 mt-auto">
         <div className="pt-4 border-t border-slate-100 dark:border-slate-800 flex flex-col gap-2.5">
-          {/* Fila secundaria: Ubicación y enlace extra (Menú / Web) */}
           <div className="flex gap-2">
             {item.googleMapsUrl && (
               <a
@@ -103,7 +100,6 @@ export const TouristCard = ({ item, type }: TouristCardProps) => {
             )}
           </div>
 
-          {/* CTA Principal de Ventas: WhatsApp de Ventas / Reservas */}
           {item.phone && (
             <a
               href={getWhatsAppSalesUrl()}
