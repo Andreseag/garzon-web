@@ -1,10 +1,27 @@
 import { CollectionConfig } from 'payload'
 
+const formatSlug = (val: string): string =>
+  val
+    .toLowerCase()
+    .replace(/ /g, '-')
+    .replace(/[^\w-]+/g, '')
+
 export const Hotels: CollectionConfig = {
   slug: 'hotels',
+  hooks: {
+    beforeValidate: [
+      ({ data, operation }) => {
+        if (operation === 'create' || operation === 'update') {
+          if (!data?.slug && data?.name) {
+            data.slug = formatSlug(data.name)
+          }
+        }
+      },
+    ],
+  },
   admin: {
     useAsTitle: 'name',
-    defaultColumns: ['name', 'location', 'phone'],
+    defaultColumns: ['name', 'category', 'location', 'phone'],
   },
   access: {
     read: () => true,
@@ -14,7 +31,28 @@ export const Hotels: CollectionConfig = {
       name: 'name',
       type: 'text',
       required: true,
-      label: 'Nombre del Hotel / Alojamiento',
+      label: 'Nombre del Establecimiento',
+    },
+    { name: 'slug', type: 'text', required: false, admin: { position: 'sidebar' } },
+    {
+      name: 'category',
+      type: 'select',
+      required: true,
+      defaultValue: 'hotel',
+      label: 'Tipo de Establecimiento',
+      options: [
+        {
+          label: 'Hotel / Alojamiento',
+          value: 'hotel',
+        },
+        {
+          label: 'Balneario',
+          value: 'balneario',
+        },
+      ],
+      admin: {
+        position: 'sidebar',
+      },
     },
     {
       name: 'description',
@@ -41,7 +79,7 @@ export const Hotels: CollectionConfig = {
     {
       name: 'phone',
       type: 'text',
-      label: 'Teléfono de Reservas',
+      label: 'Teléfono de Contacto / Reservas',
     },
     {
       name: 'bookingUrl',
@@ -57,6 +95,11 @@ export const Hotels: CollectionConfig = {
         position: 'sidebar',
       },
       index: true,
+    },
+    {
+      name: 'gallery',
+      type: 'array',
+      fields: [{ name: 'image', type: 'upload', relationTo: 'media' }],
     },
   ],
 }

@@ -1,7 +1,26 @@
 import { CollectionConfig } from 'payload'
 
+// Función auxiliar para crear slugs (puedes instalar 'slugify' o hacer esto simple)
+const formatSlug = (val: string): string =>
+  val
+    .toLowerCase()
+    .replace(/ /g, '-')
+    .replace(/[^\w-]+/g, '')
+
 export const Bars: CollectionConfig = {
   slug: 'bars',
+  hooks: {
+    beforeValidate: [
+      ({ data, operation }) => {
+        // Si estamos creando o actualizando, y el slug está vacío o no existe, lo generamos del nombre
+        if (operation === 'create' || operation === 'update') {
+          if (!data?.slug && data?.name) {
+            data.slug = formatSlug(data.name)
+          }
+        }
+      },
+    ],
+  },
   admin: {
     useAsTitle: 'name',
     defaultColumns: ['name', 'location', 'barType'],
@@ -17,6 +36,7 @@ export const Bars: CollectionConfig = {
       type: 'text',
       required: true,
     },
+    { name: 'slug', type: 'text', required: false, admin: { position: 'sidebar' } },
     {
       name: 'description',
       label: 'Breve Descripción',
@@ -76,6 +96,11 @@ export const Bars: CollectionConfig = {
       admin: {
         position: 'sidebar',
       },
+    },
+    {
+      name: 'gallery',
+      type: 'array',
+      fields: [{ name: 'image', type: 'upload', relationTo: 'media' }],
     },
   ],
 }

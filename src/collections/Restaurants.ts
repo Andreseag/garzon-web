@@ -1,7 +1,25 @@
 import { CollectionConfig } from 'payload'
 
+const formatSlug = (val: string): string =>
+  val
+    .toLowerCase()
+    .replace(/ /g, '-')
+    .replace(/[^\w-]+/g, '')
+
 export const Restaurants: CollectionConfig = {
   slug: 'restaurants',
+  hooks: {
+    beforeValidate: [
+      ({ data, operation }) => {
+        // Si estamos creando o actualizando, y el slug está vacío o no existe, lo generamos del nombre
+        if (operation === 'create' || operation === 'update') {
+          if (!data?.slug && data?.name) {
+            data.slug = formatSlug(data.name)
+          }
+        }
+      },
+    ],
+  },
   admin: {
     useAsTitle: 'name',
     defaultColumns: ['name', 'cuisineType', 'location'],
@@ -16,6 +34,7 @@ export const Restaurants: CollectionConfig = {
       required: true,
       label: 'Nombre del Restaurante',
     },
+    { name: 'slug', type: 'text', required: false, admin: { position: 'sidebar' } },
     {
       name: 'description',
       type: 'textarea',
@@ -62,6 +81,11 @@ export const Restaurants: CollectionConfig = {
         position: 'sidebar',
       },
       index: true,
+    },
+    {
+      name: 'gallery',
+      type: 'array',
+      fields: [{ name: 'image', type: 'upload', relationTo: 'media' }],
     },
   ],
 }

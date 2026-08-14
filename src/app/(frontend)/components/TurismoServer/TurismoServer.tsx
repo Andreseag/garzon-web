@@ -110,7 +110,7 @@ export default async function TurismoServer() {
           {bars.length > 0 ? (
             bars.map((bar, index) => (
               <div key={`${bar.id}-${index}`} className="flex-shrink-0 w-[280px]">
-                <TouristCard item={bar} type="restaurant" />
+                <TouristCard item={bar} type="bar" />
               </div>
             ))
           ) : (
