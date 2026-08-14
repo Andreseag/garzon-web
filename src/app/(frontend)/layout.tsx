@@ -12,6 +12,7 @@ import TrendsBar from './components/TrendsBar/TrendsBar'
 import Footer from './components/Footer/Footer'
 import { GlobalPromoSlider } from './components/GlobalPromoSlider/GlobalPromoSlider'
 import { DefaultModal } from './components/DefaultModal/DefaultModal'
+import { Analytics } from '@vercel/analytics/next'
 
 const arimo = Arimo({
   subsets: ['latin'],
