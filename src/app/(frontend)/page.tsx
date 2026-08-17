@@ -13,7 +13,7 @@ export default function Home() {
       <FeaturedNewsServer />
 
       {/* Banner promocional del Festival de Colonias */}
-      <ColoniasBanner />
+      {/* <ColoniasBanner /> */}
 
       <PoderPublicoServer />
 
