@@ -18,6 +18,21 @@ export function RichText({ content }: { content: any }) {
         )
       }
 
+      case 'link': {
+        const url = node.fields?.url || '#'
+        return (
+          <a
+            key={index}
+            href={url}
+            target="_blank"
+            rel="noopener noreferrer"
+            className="text-[#2f86cc] hover:underline font-medium"
+          >
+            {node.children?.map((child: any, i: number) => renderNode(child, i))}
+          </a>
+        )
+      }
+
       case 'paragraph': {
         return (
           <p
