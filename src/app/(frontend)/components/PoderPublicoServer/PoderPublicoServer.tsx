@@ -3,6 +3,7 @@ import config from '@/payload.config'
 import TopicGrid from '../TopicGrid/TopicGrid'
 import { Category, CategoryLabels } from '@/constants/categories'
 import { GlobalVerticalPromoSlider } from '../GlobalVerticalPromoSlider/GlobalVerticalPromoSlider'
+import TopicGridNew from '../TopicGridNew/TopicGridNew'
 
 export default async function PoderPublicoServer() {
   const payload = await getPayload({ config })
@@ -27,6 +28,34 @@ export default async function PoderPublicoServer() {
     }),
   ])
 
+  // Traer noticias de la categoría "Deportes" para el segundo grid
+  const sportsRes = await payload.find({
+    collection: 'news',
+    limit: 6,
+    sort: '-createdAt',
+    where: {
+      category: {
+        equals: Category.DEPORTES,
+      },
+    },
+  })
+
+  const formattedSportsPosts = sportsRes.docs.map((doc: any) => ({
+    id: doc.id,
+    title: doc.title,
+    excerpt: doc.excerpt || '',
+    category: CategoryLabels[doc.category] || 'Deportes',
+    image:
+      typeof doc.featuredImage === 'object' && doc.featuredImage !== null
+        ? doc.featuredImage.cloudinary?.secure_url || doc.featuredImage.url
+        : '/placeholder.jpg',
+    slug: doc.slug,
+    publishedAt: doc.publishedAt,
+    readingTime: doc.readingTime,
+    publishDate: doc.publishDate, // Agregamos la fecha de publicación real
+    content: doc.content, // Agregamos el contenido en formato JSON de Lexical
+  }))
+
   // Mapeamos los datos de las noticias
   const formattedPosts = newsRes.docs.map((doc: any) => ({
     id: doc.id,
@@ -38,6 +67,10 @@ export default async function PoderPublicoServer() {
         ? doc.featuredImage.cloudinary?.secure_url || doc.featuredImage.url
         : '/placeholder.jpg',
     slug: doc.slug,
+    publishedAt: doc.publishedAt,
+    readingTime: doc.readingTime,
+    publishDate: doc.publishDate, // Agregamos la fecha de publicación real
+    content: doc.content, // Agregamos el contenido en formato JSON de Lexical
   }))
 
   if (formattedPosts.length <= 4) return null
@@ -66,6 +99,12 @@ export default async function PoderPublicoServer() {
             slugCategory="poder-publico"
             topicTitle="Poder público"
             posts={formattedPosts}
+          />
+          <div className="mt-20"></div>
+          <TopicGridNew
+            slugCategory="deportes"
+            topicTitle="Deportes"
+            posts={formattedSportsPosts}
           />
         </div>
       </div>
