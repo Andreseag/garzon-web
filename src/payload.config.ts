@@ -19,6 +19,8 @@ import { Promotions } from './collections/Promotions'
 import { Hotels } from './collections/Hotels'
 import { Restaurants } from './collections/Restaurants'
 import { Bars } from './collections/Bars'
+import { Polls } from './collections/Polls'
+import { PollVotes } from './collections/PollVotes'
 
 const filename = fileURLToPath(import.meta.url)
 const dirname = path.dirname(filename)
@@ -44,6 +46,8 @@ export default buildConfig({
     Hotels,
     Restaurants,
     Bars,
+    Polls,
+    PollVotes,
   ],
   editor: lexicalEditor(),
   secret: process.env.PAYLOAD_SECRET || '',

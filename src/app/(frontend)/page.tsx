@@ -3,7 +3,8 @@ import PoderPublicoServer from './components/PoderPublicoServer/PoderPublicoServ
 // import ScienceTechServer from './components/ScienceTechServer/ScienceTechServer'
 // import LensServer from './components/LensServer/LensServer'
 import OpinionGridServer from './components/OpinionGridServer/OpinionGridServer'
-import NewsShorts from './components/NewsShorts/NewsShorts'
+import LatestPollsSection from './components/LatestPollsSection/LatestPollsSection'
+// import NewsShorts from './components/NewsShorts/NewsShorts'
 // import VideoGrid from './components/VideoGrid/VideoGrid'
 // import { VIDEO_POSTS } from './data/noticias'
 // import { ColoniasBanner } from './components/ColoniasBanner/ColoniasBanner'
@@ -23,13 +24,14 @@ export default function Home() {
       {/* <VideoGrid videos={VIDEO_POSTS} /> */}
       <OpinionGridServer />
 
+      <LatestPollsSection />
+
       {/* <PoderPublicoServer /> */}
       {/* <ElectionGrid posts={ELECCIONES_DATA} /> */}
       {/* <HoroscopeServer /> */}
 
       {/* <LatestNewsGrid posts={LATEST_NEWS_DATA} /> */}
       {/* <ScienceTechServer /> */}
-
       {/* <NewsShorts /> */}
 
       {/* <SpotifyPodcast

@@ -80,6 +80,8 @@ export interface Config {
     hotels: Hotel;
     restaurants: Restaurant;
     bars: Bar;
+    polls: Poll;
+    'poll-votes': PollVote;
     'payload-kv': PayloadKv;
     'payload-locked-documents': PayloadLockedDocument;
     'payload-preferences': PayloadPreference;
@@ -100,6 +102,8 @@ export interface Config {
     hotels: HotelsSelect<false> | HotelsSelect<true>;
     restaurants: RestaurantsSelect<false> | RestaurantsSelect<true>;
     bars: BarsSelect<false> | BarsSelect<true>;
+    polls: PollsSelect<false> | PollsSelect<true>;
+    'poll-votes': PollVotesSelect<false> | PollVotesSelect<true>;
     'payload-kv': PayloadKvSelect<false> | PayloadKvSelect<true>;
     'payload-locked-documents': PayloadLockedDocumentsSelect<false> | PayloadLockedDocumentsSelect<true>;
     'payload-preferences': PayloadPreferencesSelect<false> | PayloadPreferencesSelect<true>;
@@ -542,6 +546,47 @@ export interface Bar {
 }
 /**
  * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "polls".
+ */
+export interface Poll {
+  id: number;
+  title: string;
+  slug: string;
+  image?: (number | null) | Media;
+  isActive?: boolean | null;
+  options: {
+    text: string;
+    partyOrSubtitle?: string | null;
+    image?: (number | null) | Media;
+    /**
+     * Conteo automático de votos
+     */
+    votes?: number | null;
+    id?: string | null;
+  }[];
+  /**
+   * Total acumulado
+   */
+  totalVotes?: number | null;
+  updatedAt: string;
+  createdAt: string;
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "poll-votes".
+ */
+export interface PollVote {
+  id: number;
+  poll: number | Poll;
+  optionId: string;
+  ageRange?: ('18-28' | '29-45' | '46-60' | '61+') | null;
+  municipality?: string | null;
+  gender?: ('Masculino' | 'Femenino' | 'Otro' | 'Prefiero no decirlo') | null;
+  updatedAt: string;
+  createdAt: string;
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
  * via the `definition` "payload-kv".
  */
 export interface PayloadKv {
@@ -615,6 +660,14 @@ export interface PayloadLockedDocument {
     | ({
         relationTo: 'bars';
         value: number | Bar;
+      } | null)
+    | ({
+        relationTo: 'polls';
+        value: number | Poll;
+      } | null)
+    | ({
+        relationTo: 'poll-votes';
+        value: number | PollVote;
       } | null);
   globalSlug?: string | null;
   user: {
@@ -904,6 +957,41 @@ export interface BarsSelect<T extends boolean = true> {
         image?: T;
         id?: T;
       };
+  updatedAt?: T;
+  createdAt?: T;
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "polls_select".
+ */
+export interface PollsSelect<T extends boolean = true> {
+  title?: T;
+  slug?: T;
+  image?: T;
+  isActive?: T;
+  options?:
+    | T
+    | {
+        text?: T;
+        partyOrSubtitle?: T;
+        image?: T;
+        votes?: T;
+        id?: T;
+      };
+  totalVotes?: T;
+  updatedAt?: T;
+  createdAt?: T;
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "poll-votes_select".
+ */
+export interface PollVotesSelect<T extends boolean = true> {
+  poll?: T;
+  optionId?: T;
+  ageRange?: T;
+  municipality?: T;
+  gender?: T;
   updatedAt?: T;
   createdAt?: T;
 }
